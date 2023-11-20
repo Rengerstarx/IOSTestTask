@@ -73,10 +73,6 @@ class ViewController: UIViewController {
         viewCrypto.backgroundColor = .white
         viewWeather.backgroundColor = .white
         
-        let child = WidgetCrypto()
-        addChild(child)
-        view.addSubview(child.view)
-        
         taperMap = UITapGestureRecognizer(target: self, action: #selector(selectCityMap))
         taperWeather = UITapGestureRecognizer(target: self, action: #selector(selectCityWeather))
         taperCrypto = UITapGestureRecognizer(target: self, action: #selector(selectCrypto))
@@ -107,9 +103,15 @@ class ViewController: UIViewController {
         if let savedData3 = defaults.object(forKey: "selectedCoins") as? Data {
             let decoder = JSONDecoder()
             if let savedCoins = try? decoder.decode([Coin?].self, from: savedData3) {
-                coinsArray = savedCoins
-                isCrypto = true
-                print("Choosed coins: \(savedCoins)")
+                if savedCoins[0] == nil && savedCoins[1] == nil && savedCoins[2] == nil {
+                    isCrypto = false
+                }
+                else {
+                    coinsArray = savedCoins
+                    isCrypto = true
+                }
+                
+                
             }
         }
         else {
@@ -270,20 +272,24 @@ class ViewController: UIViewController {
     fileprivate func initThirdView(){
         viewCrypto.layer.cornerRadius = 20
         
+        
+        
+        viewCrypto.addSubview(imageCrypto)
+        imageCrypto.image = UIImage(named: "cryptoBack")
+        imageCrypto.leftToSuperview(offset: 10)
+        imageCrypto.rightToSuperview(offset: -10)
+        imageCrypto.bottomToSuperview(offset: -10)
+        
         viewCrypto.addSubview(lableCrypto)
         lableCrypto.text = "Курс криптовалют"
+        lableCrypto.layer.zPosition = 100
         lableCrypto.font = UIFont.systemFont(ofSize: 16)
         lableCrypto.textColor = .gray
         lableCrypto.topToSuperview(offset: 10)
         lableCrypto.leftToSuperview(offset: 10)
         
-        viewCrypto.addSubview(imageCrypto)
-        imageCrypto.image = UIImage(named: "cryptoBack")
-        imageCrypto.topToBottom(of: lableCrypto, offset: 5)
-        imageCrypto.leftToSuperview(offset: 10)
-        imageCrypto.rightToSuperview(offset: -10)
-        imageCrypto.bottomToSuperview(offset: -10)
-        
+        imageCrypto.topToBottom(of: lableCrypto, offset: 20)
+    
         if isCrypto {
             viewCrypto.addSubview(imageCryptoSet)
             imageCryptoSet.image = UIImage(named: "settings")
@@ -291,6 +297,8 @@ class ViewController: UIViewController {
             imageCryptoSet.rightToSuperview(offset: -10)
             imageCryptoSet.isUserInteractionEnabled = true
             imageCryptoSet.addGestureRecognizer(taperCrypto)
+            
+            initCryptoWidget()
         }
         else{
             viewCrypto.addSubview(buttonCrypto)
@@ -350,6 +358,7 @@ class ViewController: UIViewController {
         
         if isParseWeather == 404 {
             imageWeather.isHidden = false
+            
             let alert = UIAlertController(title: "Ошибка", message: "Произошла ошибка при получении информации о текущей погоде. Пожалуйста попробуйте снова ^_^", preferredStyle: .alert)
             let action = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(action)
@@ -374,6 +383,17 @@ class ViewController: UIViewController {
             widget.initWidget()
         }
         
+    }
+    
+    func initCryptoWidget(){
+        let child = WidgetCrypto()
+        addChild(child)
+        child.view.layer.cornerRadius = 20
+        viewCrypto.addSubview(child.view)
+        child.view.topToBottom(of: lableCrypto, offset: 10)
+        child.view.leftToSuperview(offset: 10)
+        child.view.rightToSuperview(offset: -10)
+        child.view.bottomToSuperview(offset: -10)
     }
 }
 
