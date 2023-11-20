@@ -1,0 +1,56 @@
+[
+    { 
+        "Name": "Москва",
+        "Latitude": 55.45,
+        "Longitude": 37.37,
+        "Code": "RU"
+    },
+    { 
+        "Name": "Таганрог",
+        "Latitude": 47.14,
+        "Longitude": 38.64,
+        "Code": "RU"
+    },
+    { 
+        "Name": "Лондон",
+        "Latitude": 51.3,
+        "Longitude": 0.7,
+        "Code": "GB"
+    },
+    { 
+        "Name": "Париж",
+        "Latitude": 48.51,
+        "Longitude": 2.2,
+        "Code": "FR"
+    },
+    { 
+        "Name": "Минск",
+        "Latitude": 53.53,
+        "Longitude": 27.34,
+        "Code": "BE"
+    },
+    { 
+        "Name": "Краков",
+        "Latitude": 50.06,
+        "Longitude": 19.94,
+        "Code": "PL"
+    },
+    { 
+        "Name": "Дели",
+        "Latitude": 28.39,
+        "Longitude": 77.13,
+        "Code": "IN"
+    },
+    { 
+        "Name": "Киото",
+        "Latitude": 35.1,
+        "Longitude": 135.45,
+        "Code": "JP"
+    },
+    { 
+        "Name": "Барселона",
+        "Latitude": 41.38,
+        "Longitude": 2.15,
+        "Code": "IS"
+    }
+]
