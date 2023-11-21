@@ -10,66 +10,110 @@ import Foundation
 import TinyConstraints
 import SDWebImage
 
-class WidgetController{
+class WeatherWidget{
+    
+    private let def = Defaults()
+    private let color = Color()
+    private let name = "selectedWeatherCity"
+    private var isActive = false
+    private var city: City?
+    private var nowWeather: Weather?
+    
+    private let backView = UIView()
+    let loader = UIActivityIndicatorView(style: .gray)
     
     private let stackWeather = UIStackView()
     
-    //0 - sun, 1 - windy, 2 - cloudiness, 3 - rainy, 4 - snowy
     private var wthTypeIm = ""
     private var wthTypeString = ""
-    
-    private let backView = UIView()
-    
+    private let tryButton = UIButton()
     private let imgWeather = UIImageView()
-    
     private let cityLabel = UILabel()
     private let typeWeatherLabel = UILabel()
     private let tempLabel = UILabel()
     private let typefeelLabel = UILabel()
     private let tempfeelLabel = UILabel()
     
-    //Color
-    private let backColor = UIColor(named: "backWeather")
-    
-    private let blockView: UIView
-    private let nowCity: City
-    private let nowWeather: Weather
-    private let topLabel: UILabel
-    
-    init(widgetView blockView: UIView, city nowCity: City, weather nowWeather: Weather, topObject topLable: UILabel){
-        self.blockView = blockView
-        self.nowCity = nowCity
-        self.nowWeather = nowWeather
-        self.topLabel = topLable
-        wthTypeIm = typeWeather()
-    }
-    
-    func initWidget(){
+    init(){
         setBackground()
+        checkWeather()
+        if isActive {
+            startWork()
+        }
+    }
+
+    func getView() -> UIView{
+        return backView
+    }
+
+    func getActive() -> Bool {
+        return isActive
+    }
+
+    private func checkWeather(){
+        let savedCity = def.getCity(name)
+        if savedCity != nil {
+            city = savedCity
+            isActive = true
+        }else {
+            isActive = false
+        }
+    }
+
+    @objc private func startWork(){
+        backView.addSubview(loader)
+        loader.centerInSuperview()
+        loader.startAnimating()
+        ParsWeather().pars(lati: city?.latitude, long: city?.longitude){result in
+            self.loader.removeFromSuperview()
+            self.tryButton.removeFromSuperview()
+            if let weatherr = result as? Weather {
+                self.nowWeather = weatherr
+                self.initWidget()
+            } else if let error = result as? String {
+                self.alert()
+                self.tryAgain()
+            }
+        }
+    }
+
+    func initWidget(){
         setTop()
         setBottom()
         setMiddle()
         setStack()
     }
+
+    private func alert(){
+        let alert = UIAlertController(title: "Ошибка", message: "Произошла ошибка при получении информации о текущей погоде. Пожалуйста попробуйте снова ^_^", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+    }
+
+    private func tryAgain(){
+        backView.addSubview(tryButton)
+        tryButton.backgroundColor = color.mainBlue
+        tryButton.layer.cornerRadius = 10
+        tryButton.setTitleColor(.white, for: .normal)
+        tryButton.titleLabel?.font = UIFont.systemFont(ofSize: 22)
+        tryButton.setTitle("Повторить", for: .normal)
+        tryButton.centerXToSuperview()
+        tryButton.bottomToSuperview(offset: -30)
+        tryButton.addTarget(self, action: #selector(startWork), for: .touchUpInside)
+    }
     
     private func setBackground(){
         backView.backgroundColor = .white
-        blockView.addSubview(backView)
         backView.layer.cornerRadius = 20
-        backView.topToBottom(of: topLabel, offset: 5)
-        backView.leftToSuperview(offset: 10)
-        backView.rightToSuperview(offset: -10)
-        backView.bottomToSuperview(offset: -10)
     }
     
     private func setTop(){
         backView.addSubview(cityLabel)
-        cityLabel.text = nowCity.name
+        cityLabel.text = city?.name
         cityLabel.font = UIFont.boldSystemFont(ofSize: 18)
         cityLabel.textColor = .black
         cityLabel.topToSuperview(offset: 15)
         cityLabel.leftToSuperview(offset: 15)
-        
         backView.addSubview(typeWeatherLabel)
         typeWeatherLabel.text = wthTypeString
         typeWeatherLabel.font = UIFont.systemFont(ofSize: 14)
@@ -85,10 +129,8 @@ class WidgetController{
         typefeelLabel.textColor = .black
         typefeelLabel.leftToSuperview(offset: 15)
         typefeelLabel.bottomToSuperview(offset: -10)
-        
-        
         backView.addSubview(tempfeelLabel)
-        tempfeelLabel.text = String(format: "%.1f", nowWeather.main.feelsLike - 273.15) + "ºC"
+        tempfeelLabel.text = String(format: "%.1f", nowWeather!.main.feelsLike - 273.15) + "ºC"
         tempfeelLabel.font = UIFont.boldSystemFont(ofSize: 14)
         tempfeelLabel.textColor = .black
         tempfeelLabel.leftToRight(of: typefeelLabel)
@@ -101,16 +143,12 @@ class WidgetController{
         imgWeather.topToBottom(of: typeWeatherLabel, offset: 7)
         imgWeather.bottomToTop(of: typefeelLabel, offset: -7)
         imgWeather.leftToSuperview(offset: 15)
-        
         backView.addSubview(tempLabel)
-        tempLabel.text = String(format: "%.1f", nowWeather.main.temp - 273.15) + "ºC"
+        tempLabel.text = String(format: "%.1f", nowWeather!.main.temp - 273.15) + "ºC"
         tempLabel.font = UIFont.boldSystemFont(ofSize: 24)
         tempLabel.textColor = .black
         tempLabel.topToBottom(of: typeWeatherLabel, offset: 7)
         tempLabel.bottomToTop(of: typefeelLabel, offset: -7)
-        //tempLabel.leftToRight(of: imgWeather)
-        //tempLabel.rightToSuperview(offset: -30)
-        
         imgWeather.rightToLeft(of: tempLabel)
     }
     
@@ -118,42 +156,36 @@ class WidgetController{
         stackWeather.axis = .vertical
         stackWeather.distribution = .fillEqually
         stackWeather.spacing = 1
-        
         for t in 0..<5 {
             let row = UIStackView()
             stackWeather.addArrangedSubview(row)
             row.axis = .horizontal
             row.distribution = .equalSpacing
             row.spacing = 0
-            
             var type = ""
             var value = ""
-            
             switch t {
             case 0:
                 type = "Ветер"
-                value = "\(nowWeather.wind.speed) м/с"
+                value = "\(nowWeather!.wind.speed) м/с"
             case 1:
                 type = "Давление"
-                value = "\((nowWeather.main.pressure)!) мм"
+                value = "\((nowWeather!.main.pressure)!) мм"
             case 2:
                 type = "Влажность"
-                value = "\(( nowWeather.main.humidity)!) %"
+                value = "\(( nowWeather!.main.humidity)!) %"
             case 3:
                 type = "Облачность"
-                value = "\(nowWeather.clouds.all) %"
+                value = "\(nowWeather!.clouds.all) %"
             case 4:
                 type = "Видимость"
-                let dbd = Double(nowWeather.visibility) / 1000
+                let dbd = Double(nowWeather!.visibility) / 1000
                 print(dbd)
                 value = "\(String(format: "%.1f", dbd)) км"
             default:
                 type = ""
                 value = ""
             }
-            
-            //print(value)
-            
             for y in 0..<2 {
                 let lbl = UILabel()
                 row.addArrangedSubview(lbl)
@@ -161,43 +193,35 @@ class WidgetController{
                 lbl.font = y==0 ? UIFont.systemFont(ofSize: 14) : UIFont.boldSystemFont(ofSize: 14)
                 lbl.textAlignment = y==0 ? .left : .right
             }
-            
         }
         backView.addSubview(stackWeather)
-        
-        //stackWeather.edgesToSuperview()
         stackWeather.rightToSuperview(offset: -15)
         stackWeather.topToBottom(of: typeWeatherLabel, offset: 7)
         stackWeather.bottomToSuperview(offset: -10)
         stackWeather.leftToRight(of: tempfeelLabel, offset: 5)
-        
         tempLabel.rightToLeft(of: stackWeather, offset: -5)
     }
     
     private func typeWeather() -> String{
-        if nowWeather.snow?.the1H != nil {
+        if nowWeather?.snow?.the1H != nil {
             wthTypeString = "Идет снежок"
-            return "https://psv4.userapi.com/c909328/u390619751/docs/d39/28a80deac105/snowy.png?extra=BAWmTxxHkIKZaQOVHULq0_cRZvTKa91ShH76gOzrZEydMgpcfNzYPYMtQZIKWGV8CikDOOty82UMMfTTDSfnxcXzPzOXWzSbIyUgA4sMY0JZEtnpQZTDcO6s_0uGFgP3gk1jMRk2vn-GEDuTCeg60ZWJ"
-            
+            return "https://psv4.userapi.com/c909328/u390619751/docs/d39/47d7f3f6d513/snowy.png?extra=SBqOZoUwAy59BfryFSuaut1Nexg4hsTBkdDkU2AL20OiaanVP4XHZxhrzp412xn5m5tOTpRIIqZ0yyKXthD3HajzD-xtKpNtyP0044cnJgSL6_ql3plycv8iDEV_nzypwl1sFYy0_g-TZNFDrABKSLcn"
         }
-        else if nowWeather.rain?.the1H != nil {
+        else if nowWeather?.rain?.the1H != nil {
             wthTypeString = "Идет дождик"
-            return "https://psv4.userapi.com/c909418/u390619751/docs/d27/809c69f083b3/rain.png?extra=hP6MMi7E0hmxWFshOsH-YuYvx_3UFTceSvaWl6RX0W0pCNo3-UY6oD5n8xCtNidiDgaMJuyeyh_5fc7EPbAmDxAsOo1eKTzOPCp2TBUFyg5WnL_oBhDbpddCaoD36WD40uSIS7IoVMRHNtn5fYbq9aAe"
-            
+            return "https://psv4.userapi.com/c909418/u390619751/docs/d27/04f27ef6d255/rain.png?extra=TVb2RE3fNgplnYradq1BB5ASaMxpl4Ur29gtStMiuW3fbectRqKV1ZpeMYJzp0MwAs0uAi2LS28SZC3tbnKWqzEqQUwr0gZNt72pd_Lp2KT73ig4VJ8D8sx782_QNgGtrGYx8QvDeXS6cpFIObQ3s8HE"
         }
-        else if nowWeather.wind.speed > 6.0{
+        else if (nowWeather?.wind.speed)! > 6.0{
             wthTypeString = "Сильный ветерок"
-            return "https://psv4.userapi.com/c235031/u390619751/docs/d52/f28166e3c03f/windy.png?extra=nVRfvabystRjOiwCB0H24qjSO3kZPjmK8GAKmjGNcMABdzfyuDlzTPD5piEbKXRc1vDUjXWhk9D0WXZ8T6B6qfNS3SZg4wVeGCDobBoAozQvsrKLB992NXrqViY2M3R6_mja3h60KcRmNWtjiCg4zkpH"
+            return "https://psv4.userapi.com/c235031/u390619751/docs/d52/ec5c724998c0/windy.png?extra=e5KH0UksPgZutN0J8HcOeO8is27wrrCsv2pM4ioEY320cVf8FjLFI0CkI9ECSz9YjC5iDhESf7KmTJSuN3mfRPZXG7acz9BFKnawna1-MRHs26pc0zIsMY-DnW0XIuvyfI0FtRLdPjo_4_fMgU9OaQpT"
         }
-        else if nowWeather.clouds.all > 80 {
+        else if (nowWeather?.clouds.all)! > 80 {
             wthTypeString = "На небе много облачков"
-            return "https://psv4.userapi.com/c909518/u390619751/docs/d24/0d525ab58a74/cloudy.png?extra=i-Ae_GuOdRtGQ_W_sXsDn5ZIxoYP1P5ZLHrLGsAsg9OlP7eB4R3JqD0rpSZ3hgl8Kx5almhx0pLjvvmUvcDJa9Mz92-EemU2R67iCF9R-5lOkYyZsPxtqlGEzOcH-6c_hSCS6c2pVDRHEjYbEBWx3fsr"
+            return "https://psv4.userapi.com/c909518/u390619751/docs/d24/fa822b32f104/cloudy.png?extra=Q4ZTyamP-KgZHRhMuNeTM4Q-U2N_ulipYbH40xQGlQng-8bDGSW9ynhNqdcoe5zKNQL8BQrCi50CYdsX3kM02hwI8jNgG_qddUEvdIuP_AMKYoFexWaukxzxZCyETHSDWGO40b0pTZBFKKtZ1SUKPty3"
         }
         else{
             wthTypeString = "Погода просто супер!"
-            return "https://psv4.userapi.com/c909228/u390619751/docs/d58/bd592b9cb432/sunny.png?extra=R2P785kKweGNBRze-0AcyJVZCl12B7L-Y4LKgbs34F1XZv7ZyswA0zD10rbusSNCcBl3gTJh06unppMqL80zN4Btdm23ifWfnK4k5mbz06-Cxa1DDBGhsb6TJRBDbokSmW7gmklQY_JEAVOG9_moEZzV"
+            return "https://psv4.userapi.com/c909228/u390619751/docs/d58/4e70d199f6e0/sunny.png?extra=Hs72hO6nMXJACbVL5WqmsYHmDxgN5pBz2sfb_sIq8aCeuus6fhp2tV-WYbV6H6bkVnbeyFKpFAnllr7xHtiisAYK1L9MrE621VEQgBPnAw4NZkJKTqd9E4hTPjB9H8-XOu2_Ui30Od2AbokSjPuzuTge"
         }
-        
     }
-    
 }
