@@ -1,11 +1,3 @@
-//
-//  MyCryptoAPI.swift
-//  TestTask
-//
-//  Created by sergey on 11/18/23.
-//
-
-
 import Moya
 
 enum MyCryptoAPI {
@@ -32,7 +24,7 @@ extension MyCryptoAPI: TargetType {
     }
     
     var task: Task {
-        switch self{
+        switch self {
         case let .getDataAll(market):
             let parametrs: [String: String] = [
                 "vs_currency": "usd",

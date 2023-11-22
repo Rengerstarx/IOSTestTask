@@ -1,7 +1,3 @@
-//  MyWeatherAPI.swift
-//  TestTask
-//  Created by sergey on 11/15/23.
-
 import Moya
 
 enum MyWeatherAPI {
@@ -26,7 +22,7 @@ extension MyWeatherAPI: TargetType {
     }
     
     var task: Task {
-        switch self{
+        switch self {
         case let .getData(lati, long, appid):
             let parametrs: [String: String] = [
                 "lat": String(lati),

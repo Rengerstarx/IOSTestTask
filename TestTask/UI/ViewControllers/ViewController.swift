@@ -1,40 +1,37 @@
-//
-//  ViewController.swift
-//  TestTask
-//
-//  Created by sergey on 11/13/23.
-//
 import UIKit
 import TinyConstraints
 import MapKit
 import SDWebImage
 
-class ViewController: UIViewController {
+extension ViewController {
+    func setBar() {
+        navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.boldSystemFont(ofSize: 24)]
+    }
+}
 
-    let loader = UIActivityIndicatorView(style: .gray)
-    let top = ViewTop()
-    let map = PaternView(name: "Карта", imageS: "mapBack")
-    let weather = PaternView(name: "Погода", imageS: "weatherBack")
-    let crypto = PaternView(name: "Криптовалюта", imageS: "cryptoBack")
-    let stackView = UIStackView()
-    let mapView = Map()
-    let weatherView = WeatherWidget()
-    let cryptoView = CryptoWidget()
-    let color = Color()
-    let def = Defaults()
-    var cityWeather: City?
-    var nowWeather: Weather?
-    var count = 1
+class ViewController: UIViewController {
+    private let map = PaternView(name: "Карта", imageS: "mapBack")
+    private let weather = PaternView(name: "Погода", imageS: "weatherBack")
+    private let crypto = PaternView(name: "Криптовалюта", imageS: "cryptoBack")
+    private let stackView = UIStackView()
+    private let mapView = WidgetMap()
+    private let weatherView = WidgetWeather()
+    private let cryptoView = WidgetCrypto()
+    private let def = Defaults()
+    private var count = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = color.backGrey
+        view.backgroundColor = UIColor.appGrey
+        title = "Главное меню"
+        setBar()
         setupView()
     }
     
     private func setupView() {
         addSubviews()
-        initTopView()
         initFirstView()
         initSecondView()
         initThirdView()
@@ -42,27 +39,10 @@ class ViewController: UIViewController {
     }
     
     private func addSubviews() {
-        self.view.addSubview(top.view)
         self.view.addSubview(stackView)
     }
     
-    private func initTopView(){
-        top.view.backgroundColor = color.mainBlue
-        top.view.edgesToSuperview(excluding: .bottom)
-        top.view.height(90)
-        top.view.addSubview(top.lable)
-        top.lable.text = "Главный экран"
-        top.lable.textColor = .white
-        top.lable.font = UIFont.systemFont(ofSize: 24)
-        top.lable.bottomToSuperview(offset: -10)
-        top.lable.centerXToSuperview()
-        top.view.addSubview(top.button)
-        top.button.setTitle("Править", for: .normal)
-        top.button.centerY(to: top.lable)
-        top.button.rightToSuperview(offset: -15)
-    }
-    
-    private func initStackView(){
+    private func initStackView() {
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 10
@@ -70,13 +50,13 @@ class ViewController: UIViewController {
         stackView.addArrangedSubview(weather.view)
         stackView.addArrangedSubview(crypto.view)
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.topToBottom(of: top.view, offset: 10)
+        stackView.topToSuperview(offset: 10)
         stackView.leftToSuperview(offset: 15)
         stackView.rightToSuperview(offset: -15)
         stackView.bottomToSuperview(offset: -20)
     }
 
-    private func initPaternStart(view patern: PaternView){
+    private func initPaternStart(view patern: PaternView) {
         patern.view.backgroundColor = .white
         patern.view.layer.cornerRadius = 20
         patern.view.addSubview(patern.lable)
@@ -92,7 +72,7 @@ class ViewController: UIViewController {
         patern.image.rightToSuperview(offset: -10)
         patern.image.bottomToSuperview(offset: -10)
         patern.view.addSubview(patern.button)
-        patern.button.backgroundColor = color.mainBlue
+        patern.button.backgroundColor = UIColor.appBlue
         patern.button.layer.cornerRadius = 10
         patern.button.setTitleColor(.white, for: .normal)
         patern.button.titleLabel?.font = UIFont.systemFont(ofSize: 22)
@@ -104,7 +84,7 @@ class ViewController: UIViewController {
         patern.button.addTarget(self, action: #selector(selectAction), for: .touchUpInside)
     }
 
-    private func initPaternLoad(view patern: PaternView){
+    private func initPaternLoad(view patern: PaternView) {
         patern.view.addSubview(patern.buttonSet)
         patern.buttonSet.setImage(UIImage(named: "settings"), for: .normal)
         patern.buttonSet.topToSuperview(offset: 10)
@@ -113,7 +93,7 @@ class ViewController: UIViewController {
         patern.buttonSet.addTarget(self, action: #selector(selectAction), for: .touchUpInside)
     }
     
-    private func initFirstView(){
+    private func initFirstView() {
         initPaternStart(view: map)
         if mapView.getActive() {
             initPaternLoad(view: map)
@@ -122,7 +102,7 @@ class ViewController: UIViewController {
         }
     }
     
-    private func initSecondView(){
+    private func initSecondView() {
         initPaternStart(view: weather)
         if weatherView.getActive() {
             initPaternLoad(view: weather)
@@ -131,7 +111,7 @@ class ViewController: UIViewController {
         }
     }
     
-    private func initThirdView(){
+    private func initThirdView() {
         initPaternStart(view: crypto)
         if cryptoView.getActive() {
             initPaternLoad(view: crypto)
@@ -140,7 +120,7 @@ class ViewController: UIViewController {
         }
     }
 
-    private func unboxWidget(topObject top: UILabel, widgetView wgtView: UIView, mainView mnView: UIView){
+    private func unboxWidget(topObject top: UILabel, widgetView wgtView: UIView, mainView mnView: UIView) {
         mnView.addSubview(wgtView)
         wgtView.topToBottom(of: top, offset: 10)
         wgtView.leftToSuperview(offset: 10)
@@ -148,7 +128,7 @@ class ViewController: UIViewController {
         wgtView.bottomToSuperview(offset: -10)
     }
 
-    @objc private func selectAction(sender:UIButton){
+    @objc private func selectAction(sender:UIButton) {
         var target = ""
         switch sender.tag {
         case 1:
@@ -159,7 +139,7 @@ class ViewController: UIViewController {
             target = "selectedCrypto"
         }
         def.setTransition(target: target)
-        let changerViewController = ChangerViewController()
-        UIApplication.shared.keyWindow?.rootViewController = changerViewController
+        let controller = ChangerViewController()
+        navigationController?.pushViewController(controller, animated: true)
     }
 }

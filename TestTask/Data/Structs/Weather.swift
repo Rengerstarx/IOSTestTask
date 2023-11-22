@@ -1,9 +1,3 @@
-//
-//  Weather.swift
-//  TestTask
-//
-//  Created by sergey on 11/15/23.
-
 import Foundation
 
 // MARK: - Weather

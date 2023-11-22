@@ -1,28 +1,21 @@
-//
-//  WidgetCrypto.swift
-//  TestTask
-//
-//  Created by sergey on 11/20/23.
-//
 import UIKit
 import SDWebImage
 import TinyConstraints
 
-class CryptoWidget {
+class WidgetCrypto {
 
     private let def = Defaults()
-    private let color = Color()
     private let name = "selectedCoins"
     private var isActive = false
     private var coinsArray = [Coin?]()
     private var arrayParseCoins = [Crypto]()
-    private let stackCoins = UIStackView()
+    private var stackCoins = UIStackView()
     private let backView = UIView()
     private let loaderCrypto = UIActivityIndicatorView(style: .gray)
     private let tryButton = UIButton()
     var noNils = ""
 
-    init(){
+    init() {
         setBackground()
         initWidget()
         checkCrypto()
@@ -30,7 +23,7 @@ class CryptoWidget {
             startWork()
         }
     }
-
+    
     func getView() -> UIView{
         return backView
     }
@@ -39,7 +32,7 @@ class CryptoWidget {
         return isActive
     }
 
-    private func checkCrypto(){
+    private func checkCrypto() {
         let savedCoins = def.getCoins(name)
         if savedCoins[0] == nil && savedCoins[1] == nil && savedCoins[2] == nil {
             isActive = false
@@ -49,12 +42,12 @@ class CryptoWidget {
         }
     }
 
-    private func setBackground(){
+    private func setBackground() {
         backView.backgroundColor = .white
         backView.layer.cornerRadius = 20
     }
     
-    @objc private func startWork(){
+    @objc private func startWork() {
         backView.addSubview(loaderCrypto)
         loaderCrypto.startAnimating()
         loaderCrypto.centerInSuperview()
@@ -63,31 +56,31 @@ class CryptoWidget {
                 noNils += ",\(i!.id)"
             }
         }
-        ParsCities().getCoinInfo(id: noNils){ result in
+        Parser().getOneCoin(id: noNils) { resultCrypto, resultError in
             self.loaderCrypto.removeFromSuperview()
             self.tryButton.removeFromSuperview()
-            if let coins = result as? [Crypto] {
-                self.arrayParseCoins = coins
+            if resultCrypto != nil {
+                self.arrayParseCoins = resultCrypto!
                 self.fillStack()
-            } else if let error = result as? String {
+            } else {
                 self.alerting()
             }
         }
     }
     
-    private func initWidget(){
+    private func initWidget() {
         backView.addSubview(stackCoins)
         stackCoins.axis = .horizontal
         stackCoins.distribution = .fillEqually
         stackCoins.spacing = 10
-        stackCoins.backgroundColor = color.backGrey
+        stackCoins.backgroundColor = UIColor.appGrey
         stackCoins.topToSuperview(offset: 15)
         stackCoins.bottomToSuperview(offset: -15)
         stackCoins.leftToSuperview(offset: 15)
         stackCoins.rightToSuperview(offset: -15)
     }
 
-    private func fillStack(){
+    private func fillStack() {
         var cnt = 0
         for coin in arrayParseCoins {
             cnt += 1
@@ -95,7 +88,7 @@ class CryptoWidget {
         }
     }
     
-    private func initOneCoin(coin cn : Crypto) -> UIView{
+    private func initOneCoin(coin cn : Crypto) -> UIView {
         let miniCoin = UIView()
         miniCoin.layer.cornerRadius = 20
         miniCoin.backgroundColor = .white
@@ -114,8 +107,7 @@ class CryptoWidget {
         lableChange.text = String(format: "%.3f", cn.priceChangePercentage1HInCurrency)
         if cn.priceChangePercentage1HInCurrency < 0 {
             lableChange.textColor = .red
-        }
-        else {
+        } else {
             lableChange.textColor = .green
         }
         miniCoin.addSubview(lableChange)
@@ -142,9 +134,9 @@ class CryptoWidget {
         return miniCoin
     }
 
-    private func tryAgain(){
+    private func tryAgain() {
         backView.addSubview(tryButton)
-        tryButton.backgroundColor = color.mainBlue
+        tryButton.backgroundColor = UIColor.appBlue
         tryButton.layer.cornerRadius = 10
         tryButton.setTitleColor(.white, for: .normal)
         tryButton.titleLabel?.font = UIFont.systemFont(ofSize: 22)
@@ -154,7 +146,7 @@ class CryptoWidget {
         tryButton.addTarget(self, action: #selector(startWork), for: .touchUpInside)
     }
     
-    private func alerting(){
+    private func alerting() {
         let alert = UIAlertController(title: "Ошибка", message: "Произошла ошибка при получении информации о текущей валюте. Пожалуйста попробуйте снова ^_^", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(action)

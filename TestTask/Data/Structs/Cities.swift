@@ -1,10 +1,3 @@
-//
-//  Cities.swift
-//  TestTask
-//
-//  Created by sergey on 11/14/23.
-//
-
 import Foundation
 
 struct City: Codable {

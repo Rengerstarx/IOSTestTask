@@ -1,10 +1,3 @@
-//
-//  Crypto.swift
-//  TestTask
-//
-//  Created by sergey on 11/18/23.
-//
-
 import Foundation
 
 struct Crypto: Codable {

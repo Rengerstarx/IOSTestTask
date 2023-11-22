@@ -8,7 +8,12 @@
 import Foundation
 import MapKit
 
-class Map{
+class WidgetMap {
+    private let def = Defaults()
+    private let name = "selectedMapCity"
+    private let mapView = MKMapView()
+    private var city: City?
+    private var isActive = false
 
     init(){
         checkMap()
@@ -16,14 +21,8 @@ class Map{
             settingsMap()
         }
     }
-
-    private let def = Defaults()
-    private let name = "selectedMapCity"
-    private let mapView = MKMapView()
-    private var city: City?
-    private var isActive = false
-
-    private func checkMap(){
+    
+    private func checkMap() {
         let savedCity = def.getCity(name)
         if savedCity != nil {
             city = savedCity
@@ -33,7 +32,7 @@ class Map{
         }
     }
     
-    private func settingsMap(){
+    private func settingsMap() {
         let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
         let coord = CLLocationCoordinate2D(latitude: city!.latitude, longitude: city!.longitude)
         let region = MKCoordinateRegion(center: coord, span: span)
@@ -50,7 +49,7 @@ class Map{
         return mapView
     }
 
-    func getActive() -> Bool{
+    func getActive() -> Bool {
         return isActive
     }
 

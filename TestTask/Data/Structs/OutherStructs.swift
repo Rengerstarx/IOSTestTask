@@ -1,13 +1,7 @@
-//
-//  OutherStructs.swift
-//  TestTask
-//
-//  Created by sergey on 11/21/23.
-//
-
 import Foundation
 import UIKit
 
+// MARK: - Patern view for Main Screen
 struct PaternView {
     let view = UIView()
     let lable = UILabel()
@@ -18,13 +12,8 @@ struct PaternView {
     let imageS: String
 }
 
-struct ViewTop {
-    let view = UIView()
-    let button = UIButton()
-    let lable = UILabel()
-}
-
-struct Color {
-    let mainBlue = UIColor(named: "mainBlue")
-    let backGrey = UIColor(named: "mainBackGrey")
+// MARK: - UIColor extension
+extension UIColor {
+    static let appBlue = UIColor(named: "mainBlue")
+    static let appGrey = UIColor(named: "mainBackGrey")
 }
