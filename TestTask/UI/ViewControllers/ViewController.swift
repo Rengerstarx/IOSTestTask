@@ -5,13 +5,20 @@ import SDWebImage
 
 extension ViewController {
     func setBar() {
-        navigationController?.navigationBar.barStyle = .black
+        let navBar = self.navigationController!.navigationBar
+        let standartAppearence = UINavigationBarAppearance()
+        standartAppearence.configureWithOpaqueBackground()
+        standartAppearence.backgroundColor = UIColor.appBlue
+        standartAppearence.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.boldSystemFont(ofSize: 24)]
+        navBar.standardAppearance = standartAppearence
+        navBar.scrollEdgeAppearance = standartAppearence
+        navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.boldSystemFont(ofSize: 24)]
     }
 }
 
 class ViewController: UIViewController {
+
     private let map = PaternView(name: "Карта", imageS: "mapBack")
     private let weather = PaternView(name: "Погода", imageS: "weatherBack")
     private let crypto = PaternView(name: "Криптовалюта", imageS: "cryptoBack")
@@ -21,7 +28,7 @@ class ViewController: UIViewController {
     private let cryptoView = WidgetCrypto()
     private let def = Defaults()
     private var count = 1
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.appGrey
@@ -55,7 +62,7 @@ class ViewController: UIViewController {
         stackView.rightToSuperview(offset: -15)
         stackView.bottomToSuperview(offset: -20)
     }
-
+    
     private func initPaternStart(view patern: PaternView) {
         patern.view.backgroundColor = .white
         patern.view.layer.cornerRadius = 20
@@ -83,7 +90,7 @@ class ViewController: UIViewController {
         count += 1
         patern.button.addTarget(self, action: #selector(selectAction), for: .touchUpInside)
     }
-
+    
     private func initPaternLoad(view patern: PaternView) {
         patern.view.addSubview(patern.buttonSet)
         patern.buttonSet.setImage(UIImage(named: "settings"), for: .normal)
@@ -119,7 +126,7 @@ class ViewController: UIViewController {
             unboxWidget(topObject:crypto.lable, widgetView: miniCrypto, mainView: crypto.view)
         }
     }
-
+    
     private func unboxWidget(topObject top: UILabel, widgetView wgtView: UIView, mainView mnView: UIView) {
         mnView.addSubview(wgtView)
         wgtView.topToBottom(of: top, offset: 10)
@@ -127,7 +134,7 @@ class ViewController: UIViewController {
         wgtView.rightToSuperview(offset: -10)
         wgtView.bottomToSuperview(offset: -10)
     }
-
+    
     @objc private func selectAction(sender:UIButton) {
         var target = ""
         switch sender.tag {
@@ -136,10 +143,24 @@ class ViewController: UIViewController {
         case 2:
             target = "selectedWeatherCity"
         default:
-            target = "selectedCrypto"
+            target = "selectedCoins"
         }
-        def.setTransition(target: target)
-        let controller = ChangerViewController()
+        let controller = TableViewController(typeOfTable: target)
+        controller.completionHandler = handleResult
         navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    private func handleResult(_ value: String) {
+        switch value {
+        case "selectedMapCity":
+            mapView.update()
+        case "selectedWeatherCity":
+            weatherView.update()
+        case "selectedCoins":
+            cryptoView.update()
+        default:
+            print("No updates")
+        }
+        print(value)
     }
 }

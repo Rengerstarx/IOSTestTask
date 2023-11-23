@@ -44,6 +44,11 @@ class WidgetMap {
         mapView.isZoomEnabled = false
         mapView.addAnnotation(annotation)
     }
+    
+    func update() {
+        checkMap()
+        settingsMap()
+    }
 
     func getMap() -> MKMapView {
         return mapView

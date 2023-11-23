@@ -25,9 +25,12 @@ class WidgetWeather {
         setBackground()
         if data.getActive() {
             isActive = true
-            initWidget()
             startWork()
         }
+    }
+    
+    func update(){
+        updateAll()
     }
 
     func getView() -> UIView {
@@ -41,6 +44,14 @@ class WidgetWeather {
     func updateData() {
         startWork()
     }
+    
+    private func updateAll(){
+        data.getConnect() {resultBool, resultData in
+            if resultBool {
+                self.setInfo(resultData)
+            }
+        }
+    }
 
     @objc private func startWork() {
         backView.addSubview(loader)
@@ -50,6 +61,7 @@ class WidgetWeather {
             if resultBool {
                 self.loader.removeFromSuperview()
                 self.tryButton.removeFromSuperview()
+                self.initWidget()
                 self.setInfo(resultData)
             } else {
                 self.alert()

@@ -39,6 +39,7 @@ class WidgetWeatherData {
     private let def = Defaults()
     
     func getConnect(completion: @escaping (Bool, weatherParamets) -> Void) {
+        checkWeather()
         takeWeather() {result in
             let wth = result ? self.getWeather() : weatherParamets()
             completion(result, wth)

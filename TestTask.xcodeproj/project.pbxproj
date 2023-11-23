@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		08385172313BB4C65F23575B /* Pods_TestTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4D0AD9F816FA3A5A57AF011 /* Pods_TestTask.framework */; };
-		A51EC1252B036650006BF5FD /* UICityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51EC1242B036650006BF5FD /* UICityCell.swift */; };
-		A51EC1272B03761E006BF5FD /* ChangerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51EC1262B03761E006BF5FD /* ChangerViewController.swift */; };
+		A51EC1252B036650006BF5FD /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51EC1242B036650006BF5FD /* CityCell.swift */; };
+		A51EC1272B03761E006BF5FD /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51EC1262B03761E006BF5FD /* TableViewController.swift */; };
 		A51EC12B2B038E86006BF5FD /* Cities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51EC12A2B038E86006BF5FD /* Cities.swift */; };
 		A51EC12D2B038EBD006BF5FD /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51EC12C2B038EBD006BF5FD /* Parser.swift */; };
 		A547B94B2B0549B6007D9A69 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547B94A2B0549B6007D9A69 /* Weather.swift */; };
@@ -20,9 +20,10 @@
 		A55A5AB72B0CC76A00FF565E /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A5AB62B0CC76A00FF565E /* Defaults.swift */; };
 		A55A5AB92B0CF91200FF565E /* WidgetMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A5AB82B0CF91200FF565E /* WidgetMap.swift */; };
 		A55A5ABF2B0D35E300FF565E /* OutherStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A5ABE2B0D35E300FF565E /* OutherStructs.swift */; };
+		A55FD99D2B0F731C00D49702 /* TableViewControllerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55FD99C2B0F731C00D49702 /* TableViewControllerData.swift */; };
+		A56C5C9C2B0FA0D800F15695 /* CoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56C5C9B2B0FA0D800F15695 /* CoinCell.swift */; };
 		A57358532B08E58F00978470 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57358522B08E58F00978470 /* Crypto.swift */; };
 		A57358572B08ED3000978470 /* MyCryptoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57358562B08ED3000978470 /* MyCryptoAPI.swift */; };
-		A57358592B08F5F600978470 /* CryptoCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57358582B08F5F600978470 /* CryptoCollectionView.swift */; };
 		A584AC1D2B0B4BF700B6C90C /* WidgetCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A584AC1C2B0B4BF700B6C90C /* WidgetCrypto.swift */; };
 		A5893A0A2B024DCE00493D43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5893A092B024DCE00493D43 /* AppDelegate.swift */; };
 		A5893A0C2B024DCE00493D43 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5893A0B2B024DCE00493D43 /* SceneDelegate.swift */; };
@@ -34,8 +35,8 @@
 /* Begin PBXFileReference section */
 		3C1DE0CEDA9D5FCF67E08D94 /* Pods-TestTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestTask.debug.xcconfig"; path = "Target Support Files/Pods-TestTask/Pods-TestTask.debug.xcconfig"; sourceTree = "<group>"; };
 		742055B3431F8A687FFB990F /* Pods-TestTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestTask.release.xcconfig"; path = "Target Support Files/Pods-TestTask/Pods-TestTask.release.xcconfig"; sourceTree = "<group>"; };
-		A51EC1242B036650006BF5FD /* UICityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICityCell.swift; sourceTree = "<group>"; };
-		A51EC1262B03761E006BF5FD /* ChangerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangerViewController.swift; sourceTree = "<group>"; };
+		A51EC1242B036650006BF5FD /* CityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
+		A51EC1262B03761E006BF5FD /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		A51EC12A2B038E86006BF5FD /* Cities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cities.swift; sourceTree = "<group>"; };
 		A51EC12C2B038EBD006BF5FD /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		A547B94A2B0549B6007D9A69 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
@@ -46,9 +47,10 @@
 		A55A5AB62B0CC76A00FF565E /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		A55A5AB82B0CF91200FF565E /* WidgetMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetMap.swift; sourceTree = "<group>"; };
 		A55A5ABE2B0D35E300FF565E /* OutherStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutherStructs.swift; sourceTree = "<group>"; };
+		A55FD99C2B0F731C00D49702 /* TableViewControllerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerData.swift; sourceTree = "<group>"; };
+		A56C5C9B2B0FA0D800F15695 /* CoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCell.swift; sourceTree = "<group>"; };
 		A57358522B08E58F00978470 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		A57358562B08ED3000978470 /* MyCryptoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCryptoAPI.swift; sourceTree = "<group>"; };
-		A57358582B08F5F600978470 /* CryptoCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCollectionView.swift; sourceTree = "<group>"; };
 		A584AC1C2B0B4BF700B6C90C /* WidgetCrypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetCrypto.swift; sourceTree = "<group>"; };
 		A5893A062B024DCE00493D43 /* TestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5893A092B024DCE00493D43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				A55A5AC02B0D362700FF565E /* Parsers */,
 				A55A5ABD2B0D35BB00FF565E /* Structs */,
 				A55A5ABC2B0D35A500FF565E /* API */,
+				A55FD99C2B0F731C00D49702 /* TableViewControllerData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -159,10 +162,10 @@
 		A55A5AC22B0D364B00FF565E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				A51EC1242B036650006BF5FD /* UICityCell.swift */,
+				A51EC1242B036650006BF5FD /* CityCell.swift */,
+				A56C5C9B2B0FA0D800F15695 /* CoinCell.swift */,
 				A5893A0D2B024DCE00493D43 /* ViewController.swift */,
-				A51EC1262B03761E006BF5FD /* ChangerViewController.swift */,
-				A57358582B08F5F600978470 /* CryptoCollectionView.swift */,
+				A51EC1262B03761E006BF5FD /* TableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -320,6 +323,8 @@
 				A51EC12D2B038EBD006BF5FD /* Parser.swift in Sources */,
 				A55A5ABF2B0D35E300FF565E /* OutherStructs.swift in Sources */,
 				A584AC1D2B0B4BF700B6C90C /* WidgetCrypto.swift in Sources */,
+				A55FD99D2B0F731C00D49702 /* TableViewControllerData.swift in Sources */,
+				A56C5C9C2B0FA0D800F15695 /* CoinCell.swift in Sources */,
 				A55A5AB92B0CF91200FF565E /* WidgetMap.swift in Sources */,
 				A55048102B0E3525001BFB05 /* WidgetWeatherData.swift in Sources */,
 				A5893A0E2B024DCE00493D43 /* ViewController.swift in Sources */,
@@ -329,9 +334,8 @@
 				A556264A2B075F33009A98C7 /* WidgetWeather.swift in Sources */,
 				A57358572B08ED3000978470 /* MyCryptoAPI.swift in Sources */,
 				A57358532B08E58F00978470 /* Crypto.swift in Sources */,
-				A57358592B08F5F600978470 /* CryptoCollectionView.swift in Sources */,
-				A51EC1272B03761E006BF5FD /* ChangerViewController.swift in Sources */,
-				A51EC1252B036650006BF5FD /* UICityCell.swift in Sources */,
+				A51EC1272B03761E006BF5FD /* TableViewController.swift in Sources */,
+				A51EC1252B036650006BF5FD /* CityCell.swift in Sources */,
 				A5893A0C2B024DCE00493D43 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

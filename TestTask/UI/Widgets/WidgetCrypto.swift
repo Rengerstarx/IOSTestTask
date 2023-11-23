@@ -24,6 +24,14 @@ class WidgetCrypto {
         }
     }
     
+    func update() {
+        stackCoins.arrangedSubviews.forEach {
+            $0.removeFromSuperview()
+        }
+        checkCrypto()
+        startWork()
+    }
+    
     func getView() -> UIView{
         return backView
     }
