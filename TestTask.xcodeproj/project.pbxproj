@@ -30,6 +30,11 @@
 		A5893A0E2B024DCE00493D43 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5893A0D2B024DCE00493D43 /* ViewController.swift */; };
 		A5893A132B024DD000493D43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5893A122B024DD000493D43 /* Assets.xcassets */; };
 		A5893A162B024DD000493D43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5893A142B024DD000493D43 /* LaunchScreen.storyboard */; };
+		A5D1CEBD2B10A39C003AAB02 /* BaseWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1CEBC2B10A39C003AAB02 /* BaseWidgetView.swift */; };
+		A5D1CEBF2B10B0B7003AAB02 /* MapWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1CEBE2B10B0B7003AAB02 /* MapWidgetView.swift */; };
+		A5D1CEC32B10C187003AAB02 /* MapDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1CEC22B10C186003AAB02 /* MapDataProvider.swift */; };
+		A5D1CEC52B10FA43003AAB02 /* MainStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1CEC42B10FA42003AAB02 /* MainStackView.swift */; };
+		A5D1CECB2B11021D003AAB02 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1CECA2B11021D003AAB02 /* ViewControllerExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +64,11 @@
 		A5893A122B024DD000493D43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5893A152B024DD000493D43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5893A172B024DD000493D43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5D1CEBC2B10A39C003AAB02 /* BaseWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWidgetView.swift; sourceTree = "<group>"; };
+		A5D1CEBE2B10B0B7003AAB02 /* MapWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapWidgetView.swift; sourceTree = "<group>"; };
+		A5D1CEC22B10C186003AAB02 /* MapDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDataProvider.swift; sourceTree = "<group>"; };
+		A5D1CEC42B10FA42003AAB02 /* MainStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStackView.swift; sourceTree = "<group>"; };
+		A5D1CECA2B11021D003AAB02 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		C4D0AD9F816FA3A5A57AF011 /* Pods_TestTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -164,7 +174,6 @@
 			children = (
 				A51EC1242B036650006BF5FD /* CityCell.swift */,
 				A56C5C9B2B0FA0D800F15695 /* CoinCell.swift */,
-				A5893A0D2B024DCE00493D43 /* ViewController.swift */,
 				A51EC1262B03761E006BF5FD /* TableViewController.swift */,
 			);
 			path = ViewControllers;
@@ -191,8 +200,8 @@
 		A5893A082B024DCE00493D43 /* TestTask */ = {
 			isa = PBXGroup;
 			children = (
-				A55A5AC12B0D364200FF565E /* UI */,
-				A55A5ABB2B0D359400FF565E /* Data */,
+				A5D1CEBA2B10A367003AAB02 /* Second solution */,
+				A5D1CEB92B10A346003AAB02 /* First solution */,
 				A5893A092B024DCE00493D43 /* AppDelegate.swift */,
 				A5893A0B2B024DCE00493D43 /* SceneDelegate.swift */,
 				A55A5AB42B0CC51500FF565E /* cities.json */,
@@ -201,6 +210,84 @@
 				A5893A172B024DD000493D43 /* Info.plist */,
 			);
 			path = TestTask;
+			sourceTree = "<group>";
+		};
+		A5D1CEB92B10A346003AAB02 /* First solution */ = {
+			isa = PBXGroup;
+			children = (
+				A55A5AC12B0D364200FF565E /* UI */,
+				A55A5ABB2B0D359400FF565E /* Data */,
+			);
+			path = "First solution";
+			sourceTree = "<group>";
+		};
+		A5D1CEBA2B10A367003AAB02 /* Second solution */ = {
+			isa = PBXGroup;
+			children = (
+				A5D1CEC02B10C158003AAB02 /* Data */,
+				A5D1CEBB2B10A388003AAB02 /* UI */,
+			);
+			path = "Second solution";
+			sourceTree = "<group>";
+		};
+		A5D1CEBB2B10A388003AAB02 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				A5D1CEC82B1101F8003AAB02 /* Controllers */,
+				A5D1CEC72B1101E4003AAB02 /* OtherUI */,
+				A5D1CEC62B1101B9003AAB02 /* Widgets */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		A5D1CEC02B10C158003AAB02 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				A5D1CEC12B10C160003AAB02 /* DataProviders */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		A5D1CEC12B10C160003AAB02 /* DataProviders */ = {
+			isa = PBXGroup;
+			children = (
+				A5D1CEC22B10C186003AAB02 /* MapDataProvider.swift */,
+			);
+			path = DataProviders;
+			sourceTree = "<group>";
+		};
+		A5D1CEC62B1101B9003AAB02 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				A5D1CEBC2B10A39C003AAB02 /* BaseWidgetView.swift */,
+				A5D1CEBE2B10B0B7003AAB02 /* MapWidgetView.swift */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		A5D1CEC72B1101E4003AAB02 /* OtherUI */ = {
+			isa = PBXGroup;
+			children = (
+				A5D1CEC42B10FA42003AAB02 /* MainStackView.swift */,
+			);
+			path = OtherUI;
+			sourceTree = "<group>";
+		};
+		A5D1CEC82B1101F8003AAB02 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A5D1CEC92B110204003AAB02 /* MainController */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A5D1CEC92B110204003AAB02 /* MainController */ = {
+			isa = PBXGroup;
+			children = (
+				A5893A0D2B024DCE00493D43 /* ViewController.swift */,
+				A5D1CECA2B11021D003AAB02 /* ViewControllerExtension.swift */,
+			);
+			path = MainController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,15 +412,20 @@
 				A584AC1D2B0B4BF700B6C90C /* WidgetCrypto.swift in Sources */,
 				A55FD99D2B0F731C00D49702 /* TableViewControllerData.swift in Sources */,
 				A56C5C9C2B0FA0D800F15695 /* CoinCell.swift in Sources */,
+				A5D1CEBF2B10B0B7003AAB02 /* MapWidgetView.swift in Sources */,
 				A55A5AB92B0CF91200FF565E /* WidgetMap.swift in Sources */,
 				A55048102B0E3525001BFB05 /* WidgetWeatherData.swift in Sources */,
+				A5D1CEBD2B10A39C003AAB02 /* BaseWidgetView.swift in Sources */,
+				A5D1CEC52B10FA43003AAB02 /* MainStackView.swift in Sources */,
 				A5893A0E2B024DCE00493D43 /* ViewController.swift in Sources */,
 				A547B94B2B0549B6007D9A69 /* Weather.swift in Sources */,
+				A5D1CEC32B10C187003AAB02 /* MapDataProvider.swift in Sources */,
 				A547B94D2B054ECA007D9A69 /* MyWeatherAPI.swift in Sources */,
 				A5893A0A2B024DCE00493D43 /* AppDelegate.swift in Sources */,
 				A556264A2B075F33009A98C7 /* WidgetWeather.swift in Sources */,
 				A57358572B08ED3000978470 /* MyCryptoAPI.swift in Sources */,
 				A57358532B08E58F00978470 /* Crypto.swift in Sources */,
+				A5D1CECB2B11021D003AAB02 /* ViewControllerExtension.swift in Sources */,
 				A51EC1272B03761E006BF5FD /* TableViewController.swift in Sources */,
 				A51EC1252B036650006BF5FD /* CityCell.swift in Sources */,
 				A5893A0C2B024DCE00493D43 /* SceneDelegate.swift in Sources */,

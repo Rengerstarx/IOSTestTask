@@ -18,7 +18,7 @@ class Defaults{
         defaultsString.set(target, forKey: "Selected")
     }
 
-    func setCity(city city: City, key key: String){
+    func setCity(city city: City?, key key: String){
         if let encodedCity = try? encoder.encode(city) {
             defaults.set(encodedCity, forKey: key)
         } else {
@@ -41,7 +41,7 @@ class Defaults{
 
     func getCity(_ key: String) -> City?{
         if let savedData = defaults.object(forKey: key) as? Data {
-            if let savedCity = try? decoder.decode(City.self, from: savedData) {
+            if let savedCity = try? decoder.decode(City?.self, from: savedData) {
                 return savedCity
             } else {
                 print("Defaults.getCity(): Error by decoding city")

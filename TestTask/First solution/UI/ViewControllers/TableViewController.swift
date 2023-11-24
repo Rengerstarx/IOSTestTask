@@ -8,18 +8,19 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     private var arrayCrypto = [Crypto]()
     private var marker = false
     private var data: TableViewControllerData?
-    var completionHandler: ((String) -> Void)?
+    var completionHandler: ((City?) -> Void)?
+    var currentCity: City?
     
-    init(typeOfTable value: String) {
-        print(value)
+    init(typeOfTable value: String, _ city: City?) {
+        currentCity = city
         super.init(nibName: nil, bundle: nil)
         data = TableViewControllerData(typeOfTableView: value)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    /*override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        completionHandler?(data?.takeControllerType() ?? "")
-    }
+        completionHandler?(currentCity)
+    }*/
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,7 +76,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
             }
         } else {
             data?.unloadCities(arrayCity[indexPath.item])
-            completionHandler?(data?.takeControllerType() ?? "")
+            completionHandler?(arrayCity[indexPath.item] ?? currentCity)
             navigationController?.popViewController(animated: true)
         }
     }
