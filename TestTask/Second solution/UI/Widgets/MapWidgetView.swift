@@ -1,5 +1,6 @@
 import UIKit
 import MapKit
+import TinyConstraints
 
 class MapWidgetView: BaseWidgetView {
     private let additionalView = MKMapView()

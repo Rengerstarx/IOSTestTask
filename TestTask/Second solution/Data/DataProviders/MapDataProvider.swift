@@ -11,7 +11,7 @@ class MapDataProvider {
     }
     
     private func takeCity() {
-        city = def.getCity("selectedMapCity")
+        city = def.getCityMap()
     }
     
     private func checkActive() {
@@ -26,7 +26,7 @@ class MapDataProvider {
     func update(selectedCity city: City?) {
         if self.city?.name != city?.name {
             self.city = city
-            def.setCity(city: city, key: "selectedMapCity")
+            def.setCityMap(city)
             checkActive()
         }
     }

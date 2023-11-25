@@ -1508,5 +1508,101 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BDE254E5-D2D3-4FEF-AA78-BC7BF41D7EAA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TestTask/Second solution/UI/Controllers/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "handleResultMap(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "BDE254E5-D2D3-4FEF-AA78-BC7BF41D7EAA - fd8c7fbbc50324cb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TestTask.ViewController.handleResultMap(Swift.Optional&lt;TestTask.City&gt;) -&gt; ()"
+                  moduleName = "TestTask"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sergey/Desktop/TestTask/TestTask/Second%20solution/UI/Controllers/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "82"
+                  endingLineNumber = "82"
+                  offsetFromSymbolStart = "38">
+               </Location>
+               <Location
+                  uuid = "BDE254E5-D2D3-4FEF-AA78-BC7BF41D7EAA - fd8c7fbbc503272a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TestTask.ViewController.handleResultMap(Swift.Optional&lt;TestTask.City&gt;) -&gt; ()"
+                  moduleName = "TestTask"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sergey/Desktop/TestTask/TestTask/Second%20solution/UI/Controllers/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "38">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F9750FCD-C6A2-411A-929F-04B393EB88D4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TestTask/Second solution/UI/Controllers/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "handleResultWeather(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F9750FCD-C6A2-411A-929F-04B393EB88D4 - 2b9c57ff05960939"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TestTask.ViewController.handleResultWeather(Swift.Optional&lt;TestTask.City&gt;) -&gt; ()"
+                  moduleName = "TestTask"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sergey/Desktop/TestTask/TestTask/Second%20solution/UI/Controllers/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "86"
+                  endingLineNumber = "86"
+                  offsetFromSymbolStart = "38">
+               </Location>
+               <Location
+                  uuid = "F9750FCD-C6A2-411A-929F-04B393EB88D4 - 2b9c57ff059609d8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TestTask.ViewController.handleResultWeather(Swift.Optional&lt;TestTask.City&gt;) -&gt; ()"
+                  moduleName = "TestTask"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sergey/Desktop/TestTask/TestTask/Second%20solution/UI/Controllers/ViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "38">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

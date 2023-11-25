@@ -19,6 +19,7 @@ open class BaseWidgetView: UIView {
     }
     
     open func setupView() {
+        backgroundColor = .white
         nameLable.font = UIFont.systemFont(ofSize: 16)
         nameLable.textColor = .gray
         startButton.backgroundColor = UIColor.appBlue
@@ -28,6 +29,7 @@ open class BaseWidgetView: UIView {
         startButton.setTitle("Выбрать", for: .normal)
         settingsButton.setImage(UIImage(named: "settings"), for: .normal)
         settingsButton.isHidden = true
+        containerView.layer.cornerRadius = 20
         containerView.isHidden = true
     }
     

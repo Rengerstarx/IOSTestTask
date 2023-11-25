@@ -41,7 +41,7 @@ class WidgetCrypto {
     }
 
     private func checkCrypto() {
-        let savedCoins = def.getCoins(name)
+        let savedCoins = def.getCoins()
         if savedCoins[0] == nil && savedCoins[1] == nil && savedCoins[2] == nil {
             isActive = false
         } else {
