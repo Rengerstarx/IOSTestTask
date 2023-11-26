@@ -1,6 +1,36 @@
 import Foundation
 
-struct Crypto: Codable {
+struct Crypto: Codable, Equatable {
+    static func == (lhs: Crypto, rhs: Crypto) -> Bool {
+        return lhs.id == rhs.id &&
+            lhs.symbol == rhs.symbol &&
+            lhs.name == rhs.name &&
+            lhs.image == rhs.image &&
+            lhs.currentPrice == rhs.currentPrice &&
+            lhs.marketCap == rhs.marketCap &&
+            lhs.marketCapRank == rhs.marketCapRank &&
+            lhs.fullyDilutedValuation == rhs.fullyDilutedValuation &&
+            lhs.totalVolume == rhs.totalVolume &&
+            lhs.high24H == rhs.high24H &&
+            lhs.low24H == rhs.low24H &&
+            lhs.priceChange24H == rhs.priceChange24H &&
+            lhs.priceChangePercentage24H == rhs.priceChangePercentage24H &&
+            lhs.marketCapChange24H == rhs.marketCapChange24H &&
+            lhs.marketCapChangePercentage24H == rhs.marketCapChangePercentage24H &&
+            lhs.circulatingSupply == rhs.circulatingSupply &&
+            lhs.totalSupply == rhs.totalSupply &&
+            lhs.maxSupply == rhs.maxSupply &&
+            lhs.ath == rhs.ath &&
+            lhs.athChangePercentage == rhs.athChangePercentage &&
+            lhs.athDate == rhs.athDate &&
+            lhs.atl == rhs.atl &&
+            lhs.atlChangePercentage == rhs.atlChangePercentage &&
+            lhs.atlDate == rhs.atlDate &&
+            lhs.roi == rhs.roi &&
+            lhs.lastUpdated == rhs.lastUpdated &&
+            lhs.priceChangePercentage1HInCurrency == rhs.priceChangePercentage1HInCurrency
+    }
+    
     let id, symbol, name: String
     let image: String
     let currentPrice: Double
@@ -45,7 +75,7 @@ struct Crypto: Codable {
 }
 
 // MARK: - Roi
-struct Roi: Codable {
+struct Roi: Codable, Equatable {
     let times: Double
     let currency: String
     let percentage: Double

@@ -24,7 +24,7 @@ class Defaults {
         }
     }
     
-    func setCoins(_ arrayCoins: [Coin?]) {
+    func setCoins(_ arrayCoins: [Crypto?]) {
         if let encodedCoins = try? encoder.encode(arrayCoins) {
             defaults.set(encodedCoins, forKey: "selectedCoins")
         } else {
@@ -59,9 +59,9 @@ class Defaults {
         return nil
     }
     
-    func getCoins() -> [Coin?] {
+    func getCoins() -> [Crypto?] {
         if let savedData = defaults.object(forKey: "selectedCoins") as? Data {
-            if let savedCoins = try? decoder.decode([Coin?].self, from: savedData) {
+            if let savedCoins = try? decoder.decode([Crypto?].self, from: savedData) {
                 return savedCoins
             } else {
                 print("Defaults.getCoins(): Error by decoding coins")

@@ -5,4 +5,7 @@ extension Double {
     var metersToKilometrs: String {
         return "\(String(format: "%.1f", self/1000))км"
     }
+    var formatValue: String {
+        return String(format: "%.3f", self) + "$"
+    }
 }
