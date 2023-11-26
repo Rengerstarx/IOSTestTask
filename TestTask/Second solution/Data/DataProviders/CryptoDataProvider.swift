@@ -12,6 +12,7 @@ class CryptoDataProvider {
     
     private func takeCoins() {
         coins = def.getCoins()
+        print(coins)
     }
     
     private func checkActive() {
@@ -21,13 +22,18 @@ class CryptoDataProvider {
                 noNils += ",\(i!.id)"
             }
         }
-        Parser().getOneCoin(id: noNils) { resultCrypto, resultError in
-            if resultCrypto != nil {
-                self.isActive = true
-                self.coins = resultCrypto!
-            } else {
-                self.isActive = false
+        if noNils != "" {
+            Parser().getOneCoin(id: noNils) { resultCrypto, resultError in
+                if resultCrypto != nil {
+                    self.isActive = true
+                    self.coins = resultCrypto!
+                } else {
+                    self.isActive = false
+                }
+                self.delegate?.setupData(tag: 3)
             }
+        } else {
+            self.isActive = false
             self.delegate?.setupData(tag: 3)
         }
     }

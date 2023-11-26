@@ -21,11 +21,10 @@
 		A547B94D2B054ECA007D9A69 /* MyWeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A547B94C2B054ECA007D9A69 /* MyWeatherAPI.swift */; };
 		A55A5AB52B0CC51500FF565E /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = A55A5AB42B0CC51500FF565E /* cities.json */; };
 		A55A5AB72B0CC76A00FF565E /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A5AB62B0CC76A00FF565E /* Defaults.swift */; };
-		A55FD99D2B0F731C00D49702 /* TableViewControllerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55FD99C2B0F731C00D49702 /* TableViewControllerData.swift */; };
+		A55FD99D2B0F731C00D49702 /* TableCitiesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55FD99C2B0F731C00D49702 /* TableCitiesData.swift */; };
 		A56C5C9C2B0FA0D800F15695 /* CoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56C5C9B2B0FA0D800F15695 /* CoinCell.swift */; };
 		A57358532B08E58F00978470 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57358522B08E58F00978470 /* Crypto.swift */; };
 		A57358572B08ED3000978470 /* MyCryptoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57358562B08ED3000978470 /* MyCryptoAPI.swift */; };
-		A584AC1D2B0B4BF700B6C90C /* WidgetCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A584AC1C2B0B4BF700B6C90C /* WidgetCrypto.swift */; };
 		A5893A0A2B024DCE00493D43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5893A092B024DCE00493D43 /* AppDelegate.swift */; };
 		A5893A0C2B024DCE00493D43 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5893A0B2B024DCE00493D43 /* SceneDelegate.swift */; };
 		A5893A0E2B024DCE00493D43 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5893A0D2B024DCE00493D43 /* ViewController.swift */; };
@@ -57,11 +56,10 @@
 		A547B94C2B054ECA007D9A69 /* MyWeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWeatherAPI.swift; sourceTree = "<group>"; };
 		A55A5AB42B0CC51500FF565E /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
 		A55A5AB62B0CC76A00FF565E /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
-		A55FD99C2B0F731C00D49702 /* TableViewControllerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerData.swift; sourceTree = "<group>"; };
+		A55FD99C2B0F731C00D49702 /* TableCitiesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCitiesData.swift; sourceTree = "<group>"; };
 		A56C5C9B2B0FA0D800F15695 /* CoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCell.swift; sourceTree = "<group>"; };
 		A57358522B08E58F00978470 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		A57358562B08ED3000978470 /* MyCryptoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCryptoAPI.swift; sourceTree = "<group>"; };
-		A584AC1C2B0B4BF700B6C90C /* WidgetCrypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetCrypto.swift; sourceTree = "<group>"; };
 		A5893A062B024DCE00493D43 /* TestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5893A092B024DCE00493D43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5893A0B2B024DCE00493D43 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,21 +107,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		A55A5ABA2B0D356400FF565E /* Widgets */ = {
-			isa = PBXGroup;
-			children = (
-				A584AC1C2B0B4BF700B6C90C /* WidgetCrypto.swift */,
-			);
-			path = Widgets;
-			sourceTree = "<group>";
-		};
-		A55A5ABB2B0D359400FF565E /* Data */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
 		A55A5ABC2B0D35A500FF565E /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,23 +124,6 @@
 				A547B94A2B0549B6007D9A69 /* Weather.swift */,
 			);
 			path = Structs;
-			sourceTree = "<group>";
-		};
-		A55A5AC12B0D364200FF565E /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				A55A5AC22B0D364B00FF565E /* ViewControllers */,
-				A55A5ABA2B0D356400FF565E /* Widgets */,
-			);
-			path = UI;
-			sourceTree = "<group>";
-		};
-		A55A5AC22B0D364B00FF565E /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				A56C5C9B2B0FA0D800F15695 /* CoinCell.swift */,
-			);
-			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		A58939FD2B024DCE00493D43 = {
@@ -182,7 +148,6 @@
 			isa = PBXGroup;
 			children = (
 				A5D1CEBA2B10A367003AAB02 /* Second solution */,
-				A5D1CEB92B10A346003AAB02 /* First solution */,
 				A5893A092B024DCE00493D43 /* AppDelegate.swift */,
 				A5893A0B2B024DCE00493D43 /* SceneDelegate.swift */,
 				A55A5AB42B0CC51500FF565E /* cities.json */,
@@ -191,15 +156,6 @@
 				A5893A172B024DD000493D43 /* Info.plist */,
 			);
 			path = TestTask;
-			sourceTree = "<group>";
-		};
-		A5D1CEB92B10A346003AAB02 /* First solution */ = {
-			isa = PBXGroup;
-			children = (
-				A55A5AC12B0D364200FF565E /* UI */,
-				A55A5ABB2B0D359400FF565E /* Data */,
-			);
-			path = "First solution";
 			sourceTree = "<group>";
 		};
 		A5D1CEBA2B10A367003AAB02 /* Second solution */ = {
@@ -228,7 +184,7 @@
 			children = (
 				A5D1CEC12B10C160003AAB02 /* DataProviders */,
 				A55A5ABD2B0D35BB00FF565E /* Structs */,
-				A55FD99C2B0F731C00D49702 /* TableViewControllerData.swift */,
+				A55FD99C2B0F731C00D49702 /* TableCitiesData.swift */,
 				A51EC12C2B038EBD006BF5FD /* Parser.swift */,
 				A55A5AB62B0CC76A00FF565E /* Defaults.swift */,
 			);
@@ -259,6 +215,7 @@
 		A5D1CEC72B1101E4003AAB02 /* OtherUI */ = {
 			isa = PBXGroup;
 			children = (
+				A56C5C9B2B0FA0D800F15695 /* CoinCell.swift */,
 				A51EC1242B036650006BF5FD /* CityCell.swift */,
 				A5D1CEC42B10FA42003AAB02 /* MainStackView.swift */,
 				A53DBE672B137938000CD487 /* UIStackCoinsView.swift */,
@@ -404,8 +361,7 @@
 				A51EC12B2B038E86006BF5FD /* Cities.swift in Sources */,
 				A55A5AB72B0CC76A00FF565E /* Defaults.swift in Sources */,
 				A51EC12D2B038EBD006BF5FD /* Parser.swift in Sources */,
-				A584AC1D2B0B4BF700B6C90C /* WidgetCrypto.swift in Sources */,
-				A55FD99D2B0F731C00D49702 /* TableViewControllerData.swift in Sources */,
+				A55FD99D2B0F731C00D49702 /* TableCitiesData.swift in Sources */,
 				A56C5C9C2B0FA0D800F15695 /* CoinCell.swift in Sources */,
 				A5D1CEBF2B10B0B7003AAB02 /* MapWidgetView.swift in Sources */,
 				A5DE10062B1206320092468E /* DoubleExtension.swift in Sources */,

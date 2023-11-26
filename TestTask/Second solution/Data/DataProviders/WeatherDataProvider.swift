@@ -16,14 +16,16 @@ class WeatherDataProvider {
     }
     
     private func checkActive() {
-        Parser().getWeather(lati: city?.latitude, long: city?.longitude) { resultWeather, resultError in
-            if resultWeather != nil {
-                self.weather = resultWeather!
-                self.isActive = true
-            } else {
-                self.isActive = false
+        if city != nil {
+            Parser().getWeather(lati: city?.latitude, long: city?.longitude) { resultWeather, resultError in
+                if resultWeather != nil {
+                    self.weather = resultWeather!
+                    self.isActive = true
+                } else {
+                    self.isActive = false
+                }
+                self.delegate?.setupData(tag: 2)
             }
-            self.delegate?.setupData(tag: 2)
         }
     }
     

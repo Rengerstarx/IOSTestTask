@@ -53,6 +53,7 @@ open class BaseWidgetView: UIView {
         addSubview(settingsButton)
         settingsButton.topToSuperview(offset: 10)
         settingsButton.rightToSuperview(offset: -10)
+        containerView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     open func setupStart(nameOfView name: String, imageOfView image: String) {

@@ -20,6 +20,7 @@ class UICoinCardView: UIView {
     }
     
     private func setupLayout() {
+        translatesAutoresizingMaskIntoConstraints = false
         addSubview(nameLabel)
         nameLabel.leftToSuperview(offset: 5)
         nameLabel.rightToSuperview(offset: -5)

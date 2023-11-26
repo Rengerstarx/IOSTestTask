@@ -23,6 +23,7 @@ class CryptoWidgetView: BaseWidgetView {
     override func setupLayout() {
         super.setupLayout()
         super.containerView.addSubview(additionalView)
+        additionalView.translatesAutoresizingMaskIntoConstraints = false
         additionalView.edgesToSuperview()
     }
     

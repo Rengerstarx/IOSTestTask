@@ -8,6 +8,7 @@ class UIStackCoinsView: UIStackView {
     }
     
     private func setupView() {
+        translatesAutoresizingMaskIntoConstraints = false
         axis = .horizontal
         distribution = .fillEqually
         spacing = 10
@@ -22,6 +23,7 @@ class UIStackCoinsView: UIStackView {
     
     func addCoin(_ coin: Crypto?) {
         let coinCard = UICoinCardView()
+        print(coin?.name)
         coinCard.setup(coin: coin)
         addArrangedSubview(coinCard)
     }
