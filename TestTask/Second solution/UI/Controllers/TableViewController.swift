@@ -8,8 +8,8 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     var completionHandler: ((City?) -> Void)?
     var completionHandlerCrypto: (([Crypto?]) -> Void)?
     
-    init(_ isCity: Bool, _ city: City?, _ coins: [Crypto?]) {
-        data.initer(isCity, currentCity: city, currentCrypto: coins)
+    init(widgetType tag: WidgetType, _ city: City?, _ coins: [Crypto?]) {
+        data.initer(widgetType: tag, currentCity: city, currentCrypto: coins)
         super.init(nibName: nil, bundle: nil)
     }
     

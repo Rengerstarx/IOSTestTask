@@ -11,17 +11,20 @@ class TableCitiesData {
     private var isCity = true
     private var swch: UISwitch?
     
-    func initer(_ isCity: Bool, currentCity city: City?, currentCrypto crypto: [Crypto?]) {
+    func initer(widgetType tag: WidgetType, currentCity city: City?, currentCrypto crypto: [Crypto?]) {
         currentCity = city
         currentCrypto = crypto
-        while currentCrypto.count < 3 {
-            currentCrypto.append(nil)
-        }
-        self.isCity = isCity
-        if isCity {
-            arrayCity = downloadCities()
-        } else {
+        switch tag {
+        case .crypto:
+            self.isCity = false
+            while currentCrypto.count < 3 {
+                currentCrypto.append(nil)
+            }
             downloadCrypto()
+        case .map:
+            arrayCity = downloadCities()
+        case .weather:
+            arrayCity = downloadCities()
         }
     }
     

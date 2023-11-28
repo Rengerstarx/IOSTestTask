@@ -87,19 +87,19 @@ class ViewController: UIViewController, SetupDelegate {
     }
     
     @objc private func selectMap() {
-        let controller = TableViewController(true, mapData.getCity(), [nil])
+        let controller = TableViewController(widgetType: .map, mapData.getCity(), [nil])
         controller.completionHandler = handleResultMap
         navigationController?.pushViewController(controller, animated: true)
     }
     
     @objc private func selectWeather() {
-        let controller = TableViewController(true, weatherData.getCity(), [nil])
+        let controller = TableViewController(widgetType: .weather, weatherData.getCity(), [nil])
         controller.completionHandler = handleResultWeather
         navigationController?.pushViewController(controller, animated: true)
     }
     
     @objc private func selectCrypto() {
-        let controller = TableViewController(false, nil, cryptoData.getCoins())
+        let controller = TableViewController(widgetType: .crypto, nil, cryptoData.getCoins())
         controller.completionHandlerCrypto = handleResultCrypto
         navigationController?.pushViewController(controller, animated: true)
     }
