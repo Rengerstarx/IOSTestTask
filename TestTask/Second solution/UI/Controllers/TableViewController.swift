@@ -4,17 +4,19 @@ import TinyConstraints
 class TableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     private var tableView: UITableView!
-    private var data = TableCitiesData()
+    private let data: TableDataProvider
     var completionHandler: ((City?) -> Void)?
     var completionHandlerCrypto: (([Crypto?]) -> Void)?
+    let tag: WidgetType
     
-    init(widgetType tag: WidgetType, _ city: City?, _ coins: [Crypto?]) {
-        data.initer(widgetType: tag, currentCity: city, currentCrypto: coins)
+    init(widgetType tag: WidgetType, _ city: City?, _ coins: [Crypto]) {
+        self.tag = tag
+        data = TableDataProvider(widgetType: tag, currentCity: city, currentCrypto: coins)
         super.init(nibName: nil, bundle: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        if !data.getIsCity() {
+        if tag == .crypto {
             completionHandlerCrypto?(data.getCurrentCrypto())
             super.viewWillDisappear(true)
         }
@@ -33,7 +35,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if data.getIsCity() {
+        if tag != .crypto {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CityCell", for: indexPath) as? CityCell
             let city = data.getCityById(indexPath.item)
             cell?.codeLabel.text = city.code
@@ -51,18 +53,20 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if data.getIsCity() {
+        if tag != .crypto {
             completionHandler?(data.getCityById(indexPath.item) ?? data.getCurrentCity())
             navigationController?.popViewController(animated: true)
         } else {
-            let cell = tableView.cellForRow(at: indexPath) as? CoinCell
-            if cell?.switcher.isOn ?? true {
-                data.deleteCoin(data.getCryptoById(indexPath.item).name)
-                cell?.switcher.isOn = false
-            } else {
-                let sw = data.setCoin(data.getCryptoById(indexPath.item), uiswitch: cell?.switcher)
-                sw?.isOn = false
-                cell?.switcher.isOn = true
+            if let cell = tableView.cellForRow(at: indexPath) as? CoinCell {
+                if cell.switcher.isOn {
+                    data.deleteCoin(data.getCryptoById(indexPath.item).name)
+                    cell.switcher.isOn = false
+                } else {
+                    if let sw = data.setCoin(data.getCryptoById(indexPath.item), uiswitch: cell.switcher) {
+                        sw.isOn = false
+                    }
+                    cell.switcher.isOn = true
+                }
             }
         }
     }
@@ -73,7 +77,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     private func initUITableView() {
         tableView = UITableView(frame: CGRect.zero, style: .grouped)
-        if data.getIsCity() {
+        if tag != .crypto {
             tableView.register(CityCell.self, forCellReuseIdentifier: "CityCell")
         } else {
             tableView.register(CoinCell.self, forCellReuseIdentifier: "CoinCell")

@@ -87,13 +87,13 @@ class ViewController: UIViewController, SetupDelegate {
     }
     
     @objc private func selectMap() {
-        let controller = TableViewController(widgetType: .map, mapData.getCity(), [nil])
+        let controller = TableViewController(widgetType: .map, mapData.getCity(), [])
         controller.completionHandler = handleResultMap
         navigationController?.pushViewController(controller, animated: true)
     }
     
     @objc private func selectWeather() {
-        let controller = TableViewController(widgetType: .weather, weatherData.getCity(), [nil])
+        let controller = TableViewController(widgetType: .weather, weatherData.getCity(), [])
         controller.completionHandler = handleResultWeather
         navigationController?.pushViewController(controller, animated: true)
     }
