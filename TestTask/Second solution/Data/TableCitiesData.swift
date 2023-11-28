@@ -27,8 +27,8 @@ class TableCitiesData {
     
     private func downloadCrypto() {
         Parser().getAllCoins() { resultCrypto, resultError in
-            if resultCrypto != nil {
-                self.arrayCrypto = resultCrypto!
+            if let result = resultCrypto {
+                self.arrayCrypto = result
             }
             self.updateTableView?()
         }
@@ -87,7 +87,6 @@ class TableCitiesData {
     }
     
     func setCoin(_ coin: Crypto?, uiswitch swtch: UISwitch?) -> UISwitch? {
-        print(coin)
         var mark = false
         for i in 0..<currentCrypto.count {
             if currentCrypto[i] == nil {

@@ -2,7 +2,7 @@ class CryptoDataProvider {
     
     weak var delegate: SetupDelegate?
     private var isActive = false
-    private var coins: [Crypto?] = [nil, nil, nil]
+    private var coins: [Crypto] = []
     private let def = Defaults()
     
     func initData() {
@@ -12,33 +12,27 @@ class CryptoDataProvider {
     
     private func takeCoins() {
         coins = def.getCoins()
-        print(coins)
     }
     
     private func checkActive() {
-        var noNils = ""
-        for i in coins {
-            if i != nil {
-                noNils += ",\(i!.id)"
-            }
-        }
-        if noNils != "" {
-            Parser().getOneCoin(id: noNils) { resultCrypto, resultError in
-                if resultCrypto != nil {
+        let ids = coins.compactMap{$0.id}.joined(separator: ",")
+        if ids != "" {
+            Parser().getOneCoin(id: ids) { resultCrypto, resultError in
+                if let result = resultCrypto {
                     self.isActive = true
-                    self.coins = resultCrypto!
+                    self.coins = result
                 } else {
                     self.isActive = false
                 }
-                self.delegate?.setupData(tag: 3)
+                self.delegate?.setupData(widgetType: .crypto)
             }
         } else {
             self.isActive = false
-            self.delegate?.setupData(tag: 3)
+            self.delegate?.setupData(widgetType: .crypto)
         }
     }
     
-    func update(newCoins coins: [Crypto?]) {
+    func update(newCoins coins: [Crypto]) {
         if !(self.coins == coins) {
             self.coins = coins
             def.setCoins(coins)
@@ -50,7 +44,7 @@ class CryptoDataProvider {
         return isActive
     }
     
-    func getCoins() -> [Crypto?] {
+    func getCoins() -> [Crypto] {
         return coins
     }
 }

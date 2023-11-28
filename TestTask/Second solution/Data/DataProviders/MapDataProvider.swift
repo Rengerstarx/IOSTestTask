@@ -20,13 +20,17 @@ class MapDataProvider {
         } else {
             isActive = false
         }
-        delegate?.setupData(tag: 1)
+        delegate?.setupData(widgetType: .map)
     }
     
     func update(selectedCity city: City?) {
         if self.city?.name != city?.name {
             self.city = city
-            def.setCityMap(city)
+            if let cityC = city {
+                def.setCityMap(cityC)
+            } else {
+                def.removeCityMap()
+            }
             checkActive()
         }
     }

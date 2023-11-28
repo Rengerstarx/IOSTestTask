@@ -54,15 +54,15 @@ class UICoinCardView: UIView {
         image.contentMode = .scaleAspectFit
     }
     
-    func setup(coin cn: Crypto?) {
-        nameLabel.text = cn?.name ?? "Error"
-        prevPriceLabel.text = cn?.priceChangePercentage1HInCurrency.formatValue ?? "0.0"
-        if cn?.priceChangePercentage1HInCurrency ?? 0 < 0 {
+    func setup(coin cn: Crypto) {
+        nameLabel.text = cn.name
+        prevPriceLabel.text = cn.priceChangePercentage1HInCurrency.formatValue
+        if cn.priceChangePercentage1HInCurrency < 0 {
             prevPriceLabel.textColor = .red
         } else {
             prevPriceLabel.textColor = .green
         }
-        priceLabel.text = cn?.currentPrice.formatValue ?? "0.0"
-        image.sd_setImage(with: URL(string: cn?.image ?? ""))
+        priceLabel.text = cn.currentPrice.formatValue
+        image.sd_setImage(with: URL(string: cn.image))
     }
 }

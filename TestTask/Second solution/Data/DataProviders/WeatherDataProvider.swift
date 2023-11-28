@@ -16,15 +16,15 @@ class WeatherDataProvider {
     }
     
     private func checkActive() {
-        if city != nil {
-            Parser().getWeather(lati: city?.latitude, long: city?.longitude) { resultWeather, resultError in
-                if resultWeather != nil {
-                    self.weather = resultWeather!
+        if let latitude = city?.latitude, let longitude = city?.longitude {
+            Parser().getWeather(lati: latitude, long: longitude) { resultWeather, resultError in
+                if let weather = resultWeather {
+                    self.weather = weather
                     self.isActive = true
                 } else {
                     self.isActive = false
                 }
-                self.delegate?.setupData(tag: 2)
+                self.delegate?.setupData(widgetType: .weather)
             }
         }
     }
@@ -32,7 +32,11 @@ class WeatherDataProvider {
     func update(selectedCity city: City?) {
         if self.city?.name != city?.name {
             self.city = city
-            def.setCityWeather(city)
+            if let cityC = city {
+                def.setCityWeather(cityC)
+            } else {
+                def.removeCityWeather()
+            }
             checkActive()
         }
     }

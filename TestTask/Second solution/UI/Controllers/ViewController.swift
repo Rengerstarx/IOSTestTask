@@ -3,14 +3,13 @@ import TinyConstraints
 import MapKit
 import SDWebImage
 
-//1 - Map, 2 - Weather, 3 - Crypto
 protocol SetupDelegate: AnyObject {
-    func setupData(tag value: Int)
+    func setupData(widgetType tag: WidgetType)
 }
 
 class ViewController: UIViewController, SetupDelegate {
     
-    private let stackView = MainStackView()
+    private let stackView = UIStackView()
     private let mapView = MapWidgetView()
     private let mapData = MapDataProvider()
     private let weatherView = WeatherWidgetView()
@@ -38,24 +37,28 @@ class ViewController: UIViewController, SetupDelegate {
     private func initStackView() {
         view.addSubview(stackView)
         stackView.edgesToSuperview(insets: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+            stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.spacing = 10
     }
     
-    func setupData(tag value: Int) {
-        if value == 1 {
+    func setupData(widgetType tag: WidgetType) {
+        switch tag {
+        case .map:
             if mapData.getActive() {
                 mapView.switcher(true)
                 mapView.setup(mapData.getCity()!)
             } else {
                 mapView.switcher(false)
             }
-        } else if value == 2 {
+        case .weather:
             if weatherData.getActive() {
                 weatherView.switcher(true)
                 weatherView.setup(nowWeather: weatherData.getWeather(), nowWcity: weatherData.getCity()!, descripnion: weatherData.getType())
             } else {
                 weatherView.switcher(false)
             }
-        } else if value == 3 {
+        case .crypto:
             if cryptoData.getActive() {
                 cryptoView.switcher(true)
                 cryptoView.setup(cryptoData.getCoins())
@@ -110,6 +113,6 @@ class ViewController: UIViewController, SetupDelegate {
     }
     
     private func handleResultCrypto(_ value: [Crypto?]) {
-        cryptoData.update(newCoins: value)
+        cryptoData.update(newCoins: value.compactMap{$0})
     }
 }

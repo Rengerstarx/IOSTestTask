@@ -2,9 +2,9 @@ import Foundation
 import Moya
 
 class Parser {
-    func getWeather(lati: Double?, long: Double?, completion: @escaping (Weather?,String?) -> Void) {
+    func getWeather(lati: Double, long: Double, completion: @escaping (Weather?,String?) -> Void) {
         let provide = MoyaProvider<MyWeatherAPI>()
-        provide.request(.getData(lati: lati!, long: long!, appid: "230f63b39a63039e7ec484a09f31728a")) { result in
+        provide.request(.getData(lati: lati, long: long, appid: "230f63b39a63039e7ec484a09f31728a")) { result in
             switch result {
             case let .success(response):
                 do {
@@ -67,7 +67,6 @@ class Parser {
             switch result {
             case let .success(response):
                 do {
-                    print(response.request?.url?.absoluteString)
                     let decoder = JSONDecoder()
                     let crypto = try decoder.decode([Crypto].self, from: response.data)
                     completion(crypto, nil)

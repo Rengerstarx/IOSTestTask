@@ -19,6 +19,7 @@ open class BaseWidgetView: UIView {
     }
     
     open func setupView() {
+        layer.cornerRadius = 20
         backgroundColor = .white
         nameLable.font = UIFont.systemFont(ofSize: 16)
         nameLable.textColor = .gray

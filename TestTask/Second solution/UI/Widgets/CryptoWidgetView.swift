@@ -3,7 +3,7 @@ import SDWebImage
 import TinyConstraints
 
 class CryptoWidgetView: BaseWidgetView {
-    private let additionalView = UIStackCoinsView()
+    private let additionalView = UIStackView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,20 +23,32 @@ class CryptoWidgetView: BaseWidgetView {
     override func setupLayout() {
         super.setupLayout()
         super.containerView.addSubview(additionalView)
-        additionalView.translatesAutoresizingMaskIntoConstraints = false
         additionalView.edgesToSuperview()
     }
     
     override func setupView() {
         super.setupView()
+        additionalView.axis = .horizontal
+        additionalView.distribution = .fillEqually
+        additionalView.spacing = 10
     }
     
     override func switcher(_ marker: Bool) {
         super.switcher(marker)
     }
     
-    func setup(_ coins: [Crypto?]) {
-        additionalView.deleteAll()
-        additionalView.addCoins(coins)
+    func setup(_ coins: [Crypto]) {
+        deleteAll()
+        for coin in coins {
+            let coinCard = UICoinCardView()
+            coinCard.setup(coin: coin)
+            additionalView.addArrangedSubview(coinCard)
+        }
+    }
+    
+    private func deleteAll() {
+        for view in additionalView.arrangedSubviews {
+            view.removeFromSuperview()
+        }
     }
 }

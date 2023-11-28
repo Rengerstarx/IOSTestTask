@@ -13,7 +13,6 @@
 		A51EC12B2B038E86006BF5FD /* Cities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51EC12A2B038E86006BF5FD /* Cities.swift */; };
 		A51EC12D2B038EBD006BF5FD /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51EC12C2B038EBD006BF5FD /* Parser.swift */; };
 		A53DBE662B137781000CD487 /* CryptoWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53DBE652B137781000CD487 /* CryptoWidgetView.swift */; };
-		A53DBE682B137938000CD487 /* UIStackCoinsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53DBE672B137938000CD487 /* UIStackCoinsView.swift */; };
 		A53DBE6A2B137B00000CD487 /* UICoinCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53DBE692B137B00000CD487 /* UICoinCardView.swift */; };
 		A53DBE6C2B138307000CD487 /* CryptoDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53DBE6B2B138307000CD487 /* CryptoDataProvider.swift */; };
 		A53DBE6E2B13928A000CD487 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53DBE6D2B13928A000CD487 /* ColorExtension.swift */; };
@@ -33,8 +32,8 @@
 		A5D1CEBD2B10A39C003AAB02 /* BaseWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1CEBC2B10A39C003AAB02 /* BaseWidgetView.swift */; };
 		A5D1CEBF2B10B0B7003AAB02 /* MapWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1CEBE2B10B0B7003AAB02 /* MapWidgetView.swift */; };
 		A5D1CEC32B10C187003AAB02 /* MapDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1CEC22B10C186003AAB02 /* MapDataProvider.swift */; };
-		A5D1CEC52B10FA43003AAB02 /* MainStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1CEC42B10FA42003AAB02 /* MainStackView.swift */; };
 		A5D1CECB2B11021D003AAB02 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D1CECA2B11021D003AAB02 /* ViewControllerExtension.swift */; };
+		A5DD25802B15EC6D00CC6901 /* WidgetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DD257F2B15EC6D00CC6901 /* WidgetType.swift */; };
 		A5DE10042B11FF200092468E /* WeatherWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DE10032B11FF200092468E /* WeatherWidgetView.swift */; };
 		A5DE10062B1206320092468E /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DE10052B1206320092468E /* DoubleExtension.swift */; };
 		A5DE10082B12141A0092468E /* WeatherDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DE10072B12141A0092468E /* WeatherDataProvider.swift */; };
@@ -48,7 +47,6 @@
 		A51EC12A2B038E86006BF5FD /* Cities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cities.swift; sourceTree = "<group>"; };
 		A51EC12C2B038EBD006BF5FD /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		A53DBE652B137781000CD487 /* CryptoWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoWidgetView.swift; sourceTree = "<group>"; };
-		A53DBE672B137938000CD487 /* UIStackCoinsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackCoinsView.swift; sourceTree = "<group>"; };
 		A53DBE692B137B00000CD487 /* UICoinCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICoinCardView.swift; sourceTree = "<group>"; };
 		A53DBE6B2B138307000CD487 /* CryptoDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDataProvider.swift; sourceTree = "<group>"; };
 		A53DBE6D2B13928A000CD487 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
@@ -70,8 +68,8 @@
 		A5D1CEBC2B10A39C003AAB02 /* BaseWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWidgetView.swift; sourceTree = "<group>"; };
 		A5D1CEBE2B10B0B7003AAB02 /* MapWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapWidgetView.swift; sourceTree = "<group>"; };
 		A5D1CEC22B10C186003AAB02 /* MapDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDataProvider.swift; sourceTree = "<group>"; };
-		A5D1CEC42B10FA42003AAB02 /* MainStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainStackView.swift; sourceTree = "<group>"; };
 		A5D1CECA2B11021D003AAB02 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
+		A5DD257F2B15EC6D00CC6901 /* WidgetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetType.swift; sourceTree = "<group>"; };
 		A5DE10032B11FF200092468E /* WeatherWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherWidgetView.swift; sourceTree = "<group>"; };
 		A5DE10052B1206320092468E /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		A5DE10072B12141A0092468E /* WeatherDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataProvider.swift; sourceTree = "<group>"; };
@@ -122,6 +120,7 @@
 				A51EC12A2B038E86006BF5FD /* Cities.swift */,
 				A57358522B08E58F00978470 /* Crypto.swift */,
 				A547B94A2B0549B6007D9A69 /* Weather.swift */,
+				A5DD257F2B15EC6D00CC6901 /* WidgetType.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -217,8 +216,6 @@
 			children = (
 				A56C5C9B2B0FA0D800F15695 /* CoinCell.swift */,
 				A51EC1242B036650006BF5FD /* CityCell.swift */,
-				A5D1CEC42B10FA42003AAB02 /* MainStackView.swift */,
-				A53DBE672B137938000CD487 /* UIStackCoinsView.swift */,
 				A53DBE692B137B00000CD487 /* UICoinCardView.swift */,
 			);
 			path = OtherUI;
@@ -367,7 +364,6 @@
 				A5DE10062B1206320092468E /* DoubleExtension.swift in Sources */,
 				A53DBE662B137781000CD487 /* CryptoWidgetView.swift in Sources */,
 				A5D1CEBD2B10A39C003AAB02 /* BaseWidgetView.swift in Sources */,
-				A5D1CEC52B10FA43003AAB02 /* MainStackView.swift in Sources */,
 				A5DE10042B11FF200092468E /* WeatherWidgetView.swift in Sources */,
 				A5893A0E2B024DCE00493D43 /* ViewController.swift in Sources */,
 				A547B94B2B0549B6007D9A69 /* Weather.swift in Sources */,
@@ -375,8 +371,8 @@
 				A547B94D2B054ECA007D9A69 /* MyWeatherAPI.swift in Sources */,
 				A5893A0A2B024DCE00493D43 /* AppDelegate.swift in Sources */,
 				A57358572B08ED3000978470 /* MyCryptoAPI.swift in Sources */,
-				A53DBE682B137938000CD487 /* UIStackCoinsView.swift in Sources */,
 				A53DBE6E2B13928A000CD487 /* ColorExtension.swift in Sources */,
+				A5DD25802B15EC6D00CC6901 /* WidgetType.swift in Sources */,
 				A57358532B08E58F00978470 /* Crypto.swift in Sources */,
 				A53DBE6A2B137B00000CD487 /* UICoinCardView.swift in Sources */,
 				A5D1CECB2B11021D003AAB02 /* ViewControllerExtension.swift in Sources */,
