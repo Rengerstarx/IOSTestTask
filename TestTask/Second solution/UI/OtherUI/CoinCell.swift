@@ -6,11 +6,20 @@ class CoinCell: UITableViewCell {
     let imageC = UIImageView()
     let nameLabel = UILabel()
     let switcher = UISwitch()
+    var onSwitcherStateUpdate: ((Bool) -> Void)?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupLayout()
         setupView()
+    }
+    
+    func configure(with coin: Crypto) {
+        switcher.addTarget(self, action: #selector(switcherStateChange), for: .valueChanged)
+    }
+    
+    @objc private func switcherStateChange(_ sender: UISwitch) {
+        onSwitcherStateUpdate?(sender.isOn)
     }
     
     private func setupLayout() {
@@ -34,8 +43,6 @@ class CoinCell: UITableViewCell {
         imageC.contentMode = .scaleAspectFit
         nameLabel.textColor = .black
         nameLabel.font = UIFont.systemFont(ofSize: 18)
-        switcher.isEnabled = false
-        switcher.isOn = false
     }
     
     required init?(coder: NSCoder) {

@@ -17,7 +17,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     override func viewWillDisappear(_ animated: Bool) {
         if tag == .crypto {
-            completionHandlerCrypto?(data.getCurrentCrypto())
+            completionHandlerCrypto?(data.getSelectedCrypto())
             super.viewWillDisappear(true)
         }
     }
@@ -28,11 +28,16 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         data.updateTableView = { [weak self] in
             self?.tableView.reloadData()
         }
+        data.updateCellView = { [weak self] number in
+            if let indexArray = self?.tableView.indexPathsForVisibleRows {
+                self?.tableView.reloadRows(at: [indexArray[number]], with: .none)
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.getArrayCount()
-    }
+    }	
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tag != .crypto {
@@ -46,7 +51,11 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
             let coin = data.getCryptoById(indexPath.item)
             cell?.imageC.sd_setImage(with: URL(string: coin.image))
             cell?.nameLabel.text = coin.name
-            cell?.switcher.isOn = data.checkCoin(coin.name, cell?.switcher)
+            cell?.switcher.isOn = data.isSelectedCoin(coin)
+            cell?.configure(with: coin)
+            cell?.onSwitcherStateUpdate = { [weak self] isOn in
+                self?.data.didUpdatedStateForCoin(coin, isSelected: isOn)
+            }
             return cell ?? CoinCell()
         }
         
@@ -54,20 +63,10 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tag != .crypto {
-            completionHandler?(data.getCityById(indexPath.item) ?? data.getCurrentCity())
+            completionHandler?(data.getCityById(indexPath.item) ?? data.getSelectedCity())
             navigationController?.popViewController(animated: true)
         } else {
-            if let cell = tableView.cellForRow(at: indexPath) as? CoinCell {
-                if cell.switcher.isOn {
-                    data.deleteCoin(data.getCryptoById(indexPath.item).name)
-                    cell.switcher.isOn = false
-                } else {
-                    if let sw = data.setCoin(data.getCryptoById(indexPath.item), uiswitch: cell.switcher) {
-                        sw.isOn = false
-                    }
-                    cell.switcher.isOn = true
-                }
-            }
+            
         }
     }
     

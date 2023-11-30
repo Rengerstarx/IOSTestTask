@@ -3,16 +3,17 @@ import UIKit
 class TableDataProvider {
     
     var updateTableView: (() -> Void)?
-    private var currentCity: City?
-    private var currentCrypto = [(Crypto, UISwitch?)]()
+    var updateCellView: ((Int) -> Void)?
+    private var selectedCity: City?
+    private var selectedCrypto = [Crypto]()
     private var arrayCrypto = [Crypto]()
     private var arrayCity = [City]()
     private let def = Defaults()
     private var countOfCoins = 0
     
     init(widgetType tag: WidgetType, currentCity city: City?, currentCrypto crypto: [Crypto]) {
-        currentCity = city
-        currentCrypto = crypto.convertToPair
+        selectedCity = city
+        selectedCrypto = crypto
         if tag == .crypto {
             downloadCrypto()
         } else {
@@ -41,41 +42,35 @@ class TableDataProvider {
         return arrayCity[id]
     }
     
-    func getCurrentCity() -> City? {
-        return currentCity
+    func getSelectedCity() -> City? {
+        return selectedCity
     }
     
-    func getCurrentCrypto() -> [Crypto] {
-        return currentCrypto.convertToArray
+    func getSelectedCrypto() -> [Crypto] {
+        return selectedCrypto
     }
     
     func getCryptoById(_ id: Int) -> Crypto {
         return arrayCrypto[id]
     }
     
-    func deleteCoin(_ name: String) {
-        if let number = currentCrypto.checkCoin(name) {
-            currentCrypto.remove(at: number)
-        }
+    func isSelectedCoin(_ coin: Crypto) -> Bool {
+        return selectedCrypto.checkCoin(coin.name)
     }
     
-    func checkCoin (_ name: String, _ swtch: UISwitch?) -> Bool {
-        if let number = currentCrypto.checkCoin(name) {
-            currentCrypto[number].1 = swtch
-            return true
-        }
-        return false
-    }
-    
-    func setCoin(_ coin: Crypto, uiswitch swtch: UISwitch) -> UISwitch? {
-        var result: UISwitch? = nil
-        if currentCrypto.count != 3 {
-            currentCrypto.append((coin,swtch))
+    func didUpdatedStateForCoin(_ coin: Crypto, isSelected selec: Bool) {
+        if selectedCrypto.count != 3  {
+            selectedCrypto.append(coin)
         } else {
-            result = currentCrypto[countOfCoins].1
-            currentCrypto[countOfCoins] = (coin, swtch)
+            let buffer = selectedCrypto[countOfCoins]
+            selectedCrypto[countOfCoins] = coin
             countOfCoins = (countOfCoins + 1) % 3
+            for i in 0..<arrayCrypto.count {
+                if arrayCrypto[i].name == buffer.name {
+                    updateCellView?(i)
+                }
+            }
         }
-        return result
+        
     }
 }

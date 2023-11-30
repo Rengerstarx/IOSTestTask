@@ -1,21 +1,12 @@
 import UIKit
 
 extension [Crypto] {
-    var convertToPair: [(Crypto, UISwitch?)] {
-        return self.map{($0, nil)}
-    }
-}
-
-extension [(Crypto, UISwitch?)] {
-    func checkCoin(_ name: String) -> Int? {
+    func checkCoin(_ name: String) -> Bool {
         for i in 0..<self.count {
-            if self[i].0.name == name {
-                return i
+            if self[i].name == name {
+                return true
             }
         }
-        return nil
-    }
-    var convertToArray: [Crypto] {
-        return self.map{$0.0}
+        return false
     }
 }
