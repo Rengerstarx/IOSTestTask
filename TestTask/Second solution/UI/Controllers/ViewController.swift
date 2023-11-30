@@ -5,6 +5,7 @@ import SDWebImage
 
 protocol SetupDelegate: AnyObject {
     func setupData(widgetType tag: WidgetType)
+    func setLoader(widgetType tag: WidgetType)
 }
 
 class ViewController: UIViewController, SetupDelegate {
@@ -45,26 +46,33 @@ class ViewController: UIViewController, SetupDelegate {
     func setupData(widgetType tag: WidgetType) {
         switch tag {
         case .map:
-            if mapData.getActive() {
-                mapView.switcher(true)
-                mapView.setup(mapData.getCity()!)
-            } else {
-                mapView.switcher(false)
+            mapView.setHiddenLoader(true)
+            mapView.setView(widgetState: mapData.getState())
+            if mapData.getState() == .correct { mapView.setup(mapData.getCity()!)
             }
         case .weather:
-            if weatherData.getActive() {
-                weatherView.switcher(true)
+            weatherView.setHiddenLoader(true)
+            weatherView.setView(widgetState: weatherData.getState())
+            if weatherData.getState() == .correct {
                 weatherView.setup(nowWeather: weatherData.getWeather(), nowWcity: weatherData.getCity()!, descripnion: weatherData.getType())
-            } else {
-                weatherView.switcher(false)
             }
         case .crypto:
-            if cryptoData.getActive() {
-                cryptoView.switcher(true)
+            cryptoView.setHiddenLoader(true)
+            cryptoView.setView(widgetState: cryptoData.getState())
+            if cryptoData.getState() == .correct {
                 cryptoView.setup(cryptoData.getCoins())
-            } else {
-                cryptoView.switcher(false)
             }
+        }
+    }
+    
+    func setLoader(widgetType tag: WidgetType) {
+        switch tag {
+        case .map:
+            mapView.setHiddenLoader(false)
+        case .weather:
+            weatherView.setHiddenLoader(false)
+        case .crypto:
+            cryptoView.setHiddenLoader(false)
         }
     }
     
@@ -112,7 +120,7 @@ class ViewController: UIViewController, SetupDelegate {
         weatherData.update(selectedCity: value)
     }
     
-    private func handleResultCrypto(_ value: [Crypto?]) {
-        cryptoData.update(newCoins: value.compactMap{$0})
-    }
+    private func handleResultCrypto(_ value: [Crypto]) {
+        cryptoData.update(newCoins: value)
+    }	
 }

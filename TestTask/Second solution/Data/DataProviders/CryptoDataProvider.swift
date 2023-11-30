@@ -1,11 +1,12 @@
 class CryptoDataProvider {
     
     weak var delegate: SetupDelegate?
-    private var isActive = false
+    private var state: WidgetState = .nilError
     private var coins: [Crypto] = []
     private let def = Defaults()
     
     func initData() {
+        delegate?.setLoader(widgetType: .crypto)
         takeCoins()
         checkActive()
     }
@@ -16,19 +17,19 @@ class CryptoDataProvider {
     
     private func checkActive() {
         let ids = coins.compactMap{$0.id}.joined(separator: ",")
-        if ids != "" {
-            Parser().getOneCoin(id: ids) { resultCrypto, resultError in
+        if ids.isEmpty {
+            state =  .nilError
+            delegate?.setupData(widgetType: .crypto)
+        } else {
+            Parser.getOneCoin(id: ids) { resultCrypto, resultError in
                 if let result = resultCrypto {
-                    self.isActive = true
+                    self.state = .correct
                     self.coins = result
                 } else {
-                    self.isActive = false
+                    self.state = .connectError
                 }
                 self.delegate?.setupData(widgetType: .crypto)
             }
-        } else {
-            self.isActive = false
-            self.delegate?.setupData(widgetType: .crypto)
         }
     }
     
@@ -40,11 +41,15 @@ class CryptoDataProvider {
         }
     }
     
-    func getActive() -> Bool {
-        return isActive
+    func getState() -> WidgetState {
+        return state
     }
     
     func getCoins() -> [Crypto] {
         return coins
+    }
+    
+    func tryAgain() {
+        checkActive()
     }
 }

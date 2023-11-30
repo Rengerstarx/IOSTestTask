@@ -1,7 +1,7 @@
 class MapDataProvider {
     
     weak var delegate: SetupDelegate?
-    private var isActive = false
+    private var state: WidgetState = .nilError
     private var city: City?
     private let def = Defaults()
     
@@ -15,11 +15,7 @@ class MapDataProvider {
     }
     
     private func checkActive() {
-        if city != nil {
-            isActive = true
-        } else {
-            isActive = false
-        }
+        state = city != nil ? .correct : .connectError
         delegate?.setupData(widgetType: .map)
     }
     
@@ -35,8 +31,8 @@ class MapDataProvider {
         }
     }
     
-    func getActive() -> Bool {
-        return isActive
+    func getState() -> WidgetState {
+        return state
     }
     
     func getCity() -> City? {

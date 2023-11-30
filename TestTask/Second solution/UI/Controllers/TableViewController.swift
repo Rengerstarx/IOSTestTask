@@ -3,10 +3,10 @@ import TinyConstraints
 
 class TableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    private var tableView: UITableView!
+    private let tableView = UITableView(frame: CGRect.zero, style: .grouped)
     private let data: TableDataProvider
     var completionHandler: ((City?) -> Void)?
-    var completionHandlerCrypto: (([Crypto?]) -> Void)?
+    var completionHandlerCrypto: (([Crypto]) -> Void)?
     let tag: WidgetType
     
     init(widgetType tag: WidgetType, _ city: City?, _ coins: [Crypto]) {
@@ -75,12 +75,8 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     private func initUITableView() {
-        tableView = UITableView(frame: CGRect.zero, style: .grouped)
-        if tag != .crypto {
-            tableView.register(CityCell.self, forCellReuseIdentifier: "CityCell")
-        } else {
-            tableView.register(CoinCell.self, forCellReuseIdentifier: "CoinCell")
-        }
+        tableView.register(CityCell.self, forCellReuseIdentifier: "CityCell")
+        tableView.register(CoinCell.self, forCellReuseIdentifier: "CoinCell")
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = UIColor.appGrey

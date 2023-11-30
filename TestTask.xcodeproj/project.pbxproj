@@ -12,6 +12,7 @@
 		A51EC1272B03761E006BF5FD /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51EC1262B03761E006BF5FD /* TableViewController.swift */; };
 		A51EC12B2B038E86006BF5FD /* Cities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51EC12A2B038E86006BF5FD /* Cities.swift */; };
 		A51EC12D2B038EBD006BF5FD /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51EC12C2B038EBD006BF5FD /* Parser.swift */; };
+		A525612B2B18E1FC00B03EB7 /* WidgetState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A525612A2B18E1FB00B03EB7 /* WidgetState.swift */; };
 		A53DBE662B137781000CD487 /* CryptoWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53DBE652B137781000CD487 /* CryptoWidgetView.swift */; };
 		A53DBE6A2B137B00000CD487 /* UICoinCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53DBE692B137B00000CD487 /* UICoinCardView.swift */; };
 		A53DBE6C2B138307000CD487 /* CryptoDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53DBE6B2B138307000CD487 /* CryptoDataProvider.swift */; };
@@ -21,7 +22,6 @@
 		A55A5AB52B0CC51500FF565E /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = A55A5AB42B0CC51500FF565E /* cities.json */; };
 		A55A5AB72B0CC76A00FF565E /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55A5AB62B0CC76A00FF565E /* Defaults.swift */; };
 		A55FD99D2B0F731C00D49702 /* TableDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55FD99C2B0F731C00D49702 /* TableDataProvider.swift */; };
-		A561365F2B16586A005800A4 /* CryptoArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A561365E2B16586A005800A4 /* CryptoArrayExtension.swift */; };
 		A56C5C9C2B0FA0D800F15695 /* CoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56C5C9B2B0FA0D800F15695 /* CoinCell.swift */; };
 		A57358532B08E58F00978470 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57358522B08E58F00978470 /* Crypto.swift */; };
 		A57358572B08ED3000978470 /* MyCryptoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57358562B08ED3000978470 /* MyCryptoAPI.swift */; };
@@ -47,6 +47,7 @@
 		A51EC1262B03761E006BF5FD /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		A51EC12A2B038E86006BF5FD /* Cities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cities.swift; sourceTree = "<group>"; };
 		A51EC12C2B038EBD006BF5FD /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		A525612A2B18E1FB00B03EB7 /* WidgetState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetState.swift; sourceTree = "<group>"; };
 		A53DBE652B137781000CD487 /* CryptoWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoWidgetView.swift; sourceTree = "<group>"; };
 		A53DBE692B137B00000CD487 /* UICoinCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICoinCardView.swift; sourceTree = "<group>"; };
 		A53DBE6B2B138307000CD487 /* CryptoDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDataProvider.swift; sourceTree = "<group>"; };
@@ -56,7 +57,6 @@
 		A55A5AB42B0CC51500FF565E /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
 		A55A5AB62B0CC76A00FF565E /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		A55FD99C2B0F731C00D49702 /* TableDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDataProvider.swift; sourceTree = "<group>"; };
-		A561365E2B16586A005800A4 /* CryptoArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoArrayExtension.swift; sourceTree = "<group>"; };
 		A56C5C9B2B0FA0D800F15695 /* CoinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCell.swift; sourceTree = "<group>"; };
 		A57358522B08E58F00978470 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		A57358562B08ED3000978470 /* MyCryptoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCryptoAPI.swift; sourceTree = "<group>"; };
@@ -123,6 +123,7 @@
 				A57358522B08E58F00978470 /* Crypto.swift */,
 				A547B94A2B0549B6007D9A69 /* Weather.swift */,
 				A5DD257F2B15EC6D00CC6901 /* WidgetType.swift */,
+				A525612A2B18E1FB00B03EB7 /* WidgetState.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -238,7 +239,6 @@
 				A5D1CECA2B11021D003AAB02 /* ViewControllerExtension.swift */,
 				A5DE10052B1206320092468E /* DoubleExtension.swift */,
 				A53DBE6D2B13928A000CD487 /* ColorExtension.swift */,
-				A561365E2B16586A005800A4 /* CryptoArrayExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -363,13 +363,13 @@
 				A51EC12D2B038EBD006BF5FD /* Parser.swift in Sources */,
 				A55FD99D2B0F731C00D49702 /* TableDataProvider.swift in Sources */,
 				A56C5C9C2B0FA0D800F15695 /* CoinCell.swift in Sources */,
+				A525612B2B18E1FC00B03EB7 /* WidgetState.swift in Sources */,
 				A5D1CEBF2B10B0B7003AAB02 /* MapWidgetView.swift in Sources */,
 				A5DE10062B1206320092468E /* DoubleExtension.swift in Sources */,
 				A53DBE662B137781000CD487 /* CryptoWidgetView.swift in Sources */,
 				A5D1CEBD2B10A39C003AAB02 /* BaseWidgetView.swift in Sources */,
 				A5DE10042B11FF200092468E /* WeatherWidgetView.swift in Sources */,
 				A5893A0E2B024DCE00493D43 /* ViewController.swift in Sources */,
-				A561365F2B16586A005800A4 /* CryptoArrayExtension.swift in Sources */,
 				A547B94B2B0549B6007D9A69 /* Weather.swift in Sources */,
 				A5D1CEC32B10C187003AAB02 /* MapDataProvider.swift in Sources */,
 				A547B94D2B054ECA007D9A69 /* MyWeatherAPI.swift in Sources */,

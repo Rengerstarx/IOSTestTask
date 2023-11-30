@@ -2,7 +2,7 @@ import Foundation
 import Moya
 
 class Parser {
-    func getWeather(lati: Double, long: Double, completion: @escaping (Weather?,String?) -> Void) {
+    static func getWeather(lati: Double, long: Double, completion: @escaping (Weather?,String?) -> Void) {
         let provide = MoyaProvider<MyWeatherAPI>()
         provide.request(.getData(lati: lati, long: long, appid: "230f63b39a63039e7ec484a09f31728a")) { result in
             switch result {
@@ -22,14 +22,14 @@ class Parser {
         }
     }
     
-    func getCities() -> [City] {
+    static func getCities(completion: @escaping ([City]) -> Void) {
         guard let path = Bundle.main.path(forResource: "cities", ofType: "json") else {
             print("Error with path")
-            return []
+            return
         }
         guard let data = try? Data(contentsOf: URL(fileURLWithPath: path)) else {
             print("Error with data")
-            return []
+            return
         }
         var array = [City]()
         do {
@@ -38,10 +38,10 @@ class Parser {
         } catch {
             print("Ошибка разбора JSON: \(error)")
         }
-        return array
+        completion(array)
     }
     
-    func getAllCoins(completion: @escaping ([Crypto]?,String?) -> Void){
+    static func getAllCoins(completion: @escaping ([Crypto]?,String?) -> Void){
         let provide = MoyaProvider<MyCryptoAPI>()
         provide.request(.getDataAll(market: true)) { result in
             switch result {
@@ -61,7 +61,7 @@ class Parser {
         }
     }
     
-    func getOneCoin(id id: String, completion: @escaping ([Crypto]?, String?) -> Void) {
+    static func getOneCoin(id id: String, completion: @escaping ([Crypto]?, String?) -> Void) {
         let provide = MoyaProvider<MyCryptoAPI>()
         provide.request(.getData(coin: id)) { result in
             switch result {

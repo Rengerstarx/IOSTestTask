@@ -90,10 +90,6 @@ class WeatherWidgetView: BaseWidgetView {
         }
     }
     
-    override func switcher(_ marker: Bool) {
-        super.switcher(marker)
-    }
-    
     func setup(nowWeather wth: Weather, nowWcity city: City, descripnion desc: (String,String)) {
         cityLabel.text = city.name
         tempLabel.text = wth.main.temp.fahrenheitToCelsius

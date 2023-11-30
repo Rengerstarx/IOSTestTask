@@ -17,12 +17,12 @@ class TableDataProvider {
         if tag == .crypto {
             downloadCrypto()
         } else {
-            arrayCity = downloadCities()
+            downloadCities()
         }
     }
     
     private func downloadCrypto() {
-        Parser().getAllCoins() { resultCrypto, resultError in
+        Parser.getAllCoins() { resultCrypto, resultError in
             if let result = resultCrypto {
                 self.arrayCrypto = result
             }
@@ -30,8 +30,11 @@ class TableDataProvider {
         }
     }
     
-    private func downloadCities() -> [City] {
-        return Parser().getCities()
+    private func downloadCities() {
+        Parser.getCities() { result in
+            self.arrayCity = result
+            self.updateTableView?()
+        }
     }
     
     func getArrayCount() -> Int {
@@ -55,20 +58,23 @@ class TableDataProvider {
     }
     
     func isSelectedCoin(_ coin: Crypto) -> Bool {
-        return selectedCrypto.checkCoin(coin.name)
+        return selectedCrypto.contains(coin)
     }
     
     func didUpdatedStateForCoin(_ coin: Crypto, isSelected selec: Bool) {
-        if selectedCrypto.count != 3  {
+        if selectedCrypto.contains(coin) {
+            if let indexAll = arrayCrypto.firstIndex(of: coin), let indexSelect = selectedCrypto.firstIndex(of: coin)  {
+                selectedCrypto.remove(at: indexSelect)
+                updateCellView?(indexAll)
+            }
+        }
+        if selectedCrypto.count < 3  {
             selectedCrypto.append(coin)
         } else {
-            let buffer = selectedCrypto[countOfCoins]
-            selectedCrypto[countOfCoins] = coin
-            countOfCoins = (countOfCoins + 1) % 3
-            for i in 0..<arrayCrypto.count {
-                if arrayCrypto[i].name == buffer.name {
-                    updateCellView?(i)
-                }
+            let last = selectedCrypto.removeLast()
+            selectedCrypto.append(coin)
+            if let indexSelect = arrayCrypto.firstIndex(of: last) {
+                updateCellView?(indexSelect)
             }
         }
         

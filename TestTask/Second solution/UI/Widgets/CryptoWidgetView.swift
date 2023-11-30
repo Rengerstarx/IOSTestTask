@@ -33,10 +33,6 @@ class CryptoWidgetView: BaseWidgetView {
         additionalView.spacing = 10
     }
     
-    override func switcher(_ marker: Bool) {
-        super.switcher(marker)
-    }
-    
     func setup(_ coins: [Crypto]) {
         deleteAll()
         for coin in coins {

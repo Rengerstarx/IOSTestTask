@@ -32,10 +32,6 @@ class MapWidgetView: BaseWidgetView {
         additionalView.isZoomEnabled = false
     }
     
-    override func switcher(_ marker: Bool) {
-        super.switcher(marker)
-    }
-    
     func setup(_ city: City) {
         let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
         let coord = CLLocationCoordinate2D(latitude: city.latitude, longitude: city.longitude)

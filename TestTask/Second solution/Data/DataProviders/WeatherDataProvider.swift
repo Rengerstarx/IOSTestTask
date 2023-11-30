@@ -1,12 +1,13 @@
 class WeatherDataProvider {
     
     weak var delegate: SetupDelegate?
-    private var isActive = false
+    private var state: WidgetState = .connectError
     private var city: City?
     private var weather: Weather?
     private let def = Defaults()
     
     func initData() {
+        delegate?.setLoader(widgetType: .weather)
         takeCity()
         checkActive()
     }
@@ -17,15 +18,18 @@ class WeatherDataProvider {
     
     private func checkActive() {
         if let latitude = city?.latitude, let longitude = city?.longitude {
-            Parser().getWeather(lati: latitude, long: longitude) { resultWeather, resultError in
+            Parser.getWeather(lati: latitude, long: longitude) { resultWeather, resultError in
                 if let weather = resultWeather {
                     self.weather = weather
-                    self.isActive = true
+                    self.state = .correct
                 } else {
-                    self.isActive = false
+                    self.state = .connectError
                 }
                 self.delegate?.setupData(widgetType: .weather)
             }
+        } else {
+            state  = .nilError
+            delegate?.setupData(widgetType: .weather)
         }
     }
     
@@ -41,8 +45,8 @@ class WeatherDataProvider {
         }
     }
     
-    func getActive() -> Bool {
-        return isActive
+    func getState() -> WidgetState {
+        return state
     }
     
     func getCity() -> City? {
@@ -51,6 +55,10 @@ class WeatherDataProvider {
     
     func getWeather() -> Weather {
         return weather!
+    }
+    
+    func tryAgain() {
+        checkActive()
     }
     
     func getType() -> (String,String) {
