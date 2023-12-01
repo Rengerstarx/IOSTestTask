@@ -50,8 +50,8 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifireCoin, for: indexPath) as? CoinCell
             let coin = data.getCryptoById(indexPath.item)
-            cell?.imageC.sd_setImage(with: URL(string: coin.image))
-            cell?.nameLabel.text = coin.name
+            cell?.image.sd_setImage(with: URL(string: coin.image))
+            cell?.name.text = coin.name
             cell?.switcher.isOn = data.isSelectedCoin(coin)
             cell?.configure(with: coin)
             cell?.onSwitcherStateUpdate = { [weak self] isOn in

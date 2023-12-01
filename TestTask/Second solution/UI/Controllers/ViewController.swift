@@ -95,21 +95,33 @@ class ViewController: UIViewController, SetupDelegate {
     }
     
     @objc private func selectMap() {
-        let controller = TableViewController(widgetType: .map)
-        controller.completionHandler = handleResultMap
-        navigationController?.pushViewController(controller, animated: true)
+        if mapData.getState() == .connectError {
+            
+        } else {
+            let controller = TableViewController(widgetType: .map)
+            controller.completionHandler = handleResultMap
+            navigationController?.pushViewController(controller, animated: true)
+        }
     }
     
     @objc private func selectWeather() {
-        let controller = TableViewController(widgetType: .weather)
-        controller.completionHandler = handleResultWeather
-        navigationController?.pushViewController(controller, animated: true)
+        if weatherData.getState() == .connectError {
+            
+        } else {
+            let controller = TableViewController(widgetType: .weather)
+            controller.completionHandler = handleResultWeather
+            navigationController?.pushViewController(controller, animated: true)
+        }
     }
     
     @objc private func selectCrypto() {
-        let controller = TableViewController(widgetType: .crypto)
-        controller.completionHandlerCrypto = handleResultCrypto
-        navigationController?.pushViewController(controller, animated: true)
+        if cryptoData.getState() == .connectError {
+            
+        } else {
+            let controller = TableViewController(widgetType: .crypto)
+            controller.completionHandlerCrypto = handleResultCrypto
+            navigationController?.pushViewController(controller, animated: true)
+        }
     }
     
     private func handleResultMap(_ value: City?) {
