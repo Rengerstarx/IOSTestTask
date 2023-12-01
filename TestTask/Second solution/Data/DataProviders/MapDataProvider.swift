@@ -19,6 +19,10 @@ class MapDataProvider {
         delegate?.setupData(widgetType: .map)
     }
     
+    func tryAgain() {
+        checkActive()
+    }
+    
     func update(selectedCity city: City?) {
         if self.city?.name != city?.name {
             self.city = city

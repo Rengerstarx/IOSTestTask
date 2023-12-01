@@ -6,7 +6,7 @@ class CoinCell: UITableViewCell {
     let image = UIImageView()
     let name = UILabel()
     let switcher = UISwitch()
-    var onSwitcherStateUpdate: ((Bool) -> Void)?
+    var onSwitcherStateUpdate: (() -> Void)?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -19,7 +19,7 @@ class CoinCell: UITableViewCell {
     }
     
     @objc private func switcherStateChange(_ sender: UISwitch) {
-        onSwitcherStateUpdate?(sender.isOn)
+        onSwitcherStateUpdate?()
     }
     
     private func setupLayout() {

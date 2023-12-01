@@ -53,8 +53,8 @@ class WeatherDataProvider {
         return city
     }
     
-    func getWeather() -> Weather {
-        return weather!
+    func getWeather() -> Weather? {
+        return weather
     }
     
     func tryAgain() {

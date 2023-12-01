@@ -48,13 +48,14 @@ class ViewController: UIViewController, SetupDelegate {
         case .map:
             mapView.setHiddenLoader(true)
             mapView.setView(widgetState: mapData.getState())
-            if mapData.getState() == .correct { mapView.setup(mapData.getCity()!)
+            if mapData.getState() == .correct, let city = mapData.getCity() {
+                mapView.setup(city)
             }
         case .weather:
             weatherView.setHiddenLoader(true)
             weatherView.setView(widgetState: weatherData.getState())
-            if weatherData.getState() == .correct {
-                weatherView.setup(nowWeather: weatherData.getWeather(), nowWcity: weatherData.getCity()!, descripnion: weatherData.getType())
+            if weatherData.getState() == .correct, let city = weatherData.getCity(), let weather = weatherData.getWeather() {
+                weatherView.setup(nowWeather: weather, nowWcity: city, descripnion: weatherData.getType())
             }
         case .crypto:
             cryptoView.setHiddenLoader(true)
@@ -96,7 +97,7 @@ class ViewController: UIViewController, SetupDelegate {
     
     @objc private func selectMap() {
         if mapData.getState() == .connectError {
-            
+            mapData.tryAgain()
         } else {
             let controller = TableViewController(widgetType: .map)
             controller.completionHandler = handleResultMap
@@ -106,7 +107,7 @@ class ViewController: UIViewController, SetupDelegate {
     
     @objc private func selectWeather() {
         if weatherData.getState() == .connectError {
-            
+            weatherData.tryAgain()
         } else {
             let controller = TableViewController(widgetType: .weather)
             controller.completionHandler = handleResultWeather
@@ -116,7 +117,7 @@ class ViewController: UIViewController, SetupDelegate {
     
     @objc private func selectCrypto() {
         if cryptoData.getState() == .connectError {
-            
+            cryptoData.tryAgain()
         } else {
             let controller = TableViewController(widgetType: .crypto)
             controller.completionHandlerCrypto = handleResultCrypto

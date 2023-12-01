@@ -7,7 +7,6 @@ open class BaseWidgetView: UIView {
     private let nameLable = UILabel()
     let settingsButton  = UIButton()
     let startButton = UIButton()
-    let tryButton = UIButton()
     open var containerView = UIView()
     private let baseImage = UIImageView()
     private let loader = UIActivityIndicatorView(style: .gray)
@@ -30,12 +29,6 @@ open class BaseWidgetView: UIView {
         startButton.setTitleColor(.white, for: .normal)
         startButton.titleLabel?.font = UIFont.systemFont(ofSize: 22)
         startButton.setTitle("Выбрать", for: .normal)
-        tryButton.backgroundColor = UIColor.appBlue
-        tryButton.layer.cornerRadius = 10
-        tryButton.setTitleColor(.white, for: .normal)
-        tryButton.titleLabel?.font = UIFont.systemFont(ofSize: 22)
-        tryButton.setTitle("Повторить", for: .normal)
-        tryButton.isHidden = true
         settingsButton.setImage(UIImage(named: "settings"), for: .normal)
         settingsButton.isHidden = true
         loader.startAnimating()
@@ -61,9 +54,6 @@ open class BaseWidgetView: UIView {
         addSubview(startButton)
         startButton.centerXToSuperview()
         startButton.bottomToSuperview(offset: -30)
-        addSubview(tryButton)
-        tryButton.centerXToSuperview()
-        tryButton.bottomToSuperview(offset: -30)
         addSubview(loader)
         loader.center(in: containerView)
         addSubview(settingsButton)
@@ -83,20 +73,19 @@ open class BaseWidgetView: UIView {
             settingsButton.isHidden = true
             containerView.isHidden = true
             baseImage.isHidden = false
-            startButton.isHidden = true
-            tryButton.isHidden = false
+            startButton.isHidden = false
+            startButton.setTitle("Повторить", for: .normal)
         case .nilError:
             settingsButton.isHidden = true
             containerView.isHidden = true
             baseImage.isHidden = false
             startButton.isHidden = false
-            tryButton.isHidden = true
+            startButton.setTitle("Выбрать", for: .normal)
         case .correct:
             settingsButton.isHidden = false
             containerView.isHidden = false
             baseImage.isHidden = true
             startButton.isHidden = true
-            tryButton.isHidden = true
         }
     }
     

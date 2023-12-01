@@ -54,8 +54,8 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
             cell?.name.text = coin.name
             cell?.switcher.isOn = data.isSelectedCoin(coin)
             cell?.configure(with: coin)
-            cell?.onSwitcherStateUpdate = { [weak self] isOn in
-                self?.data.didUpdatedStateForCoin(coin, isSelected: isOn)
+            cell?.onSwitcherStateUpdate = { [weak self] in
+                self?.data.didUpdatedStateForCoin(coin)
             }
             return cell ?? CoinCell()
         }

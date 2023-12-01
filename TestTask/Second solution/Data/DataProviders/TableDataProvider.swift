@@ -64,14 +64,13 @@ class TableDataProvider {
         return selectedCrypto.contains(coin)
     }
     
-    func didUpdatedStateForCoin(_ coin: Crypto, isSelected isOn: Bool) {
-        if isOn {
+    func didUpdatedStateForCoin(_ coin: Crypto) {
+        if selectedCrypto.contains(coin) {
             if let indexAll = arrayCrypto.firstIndex(of: coin), let indexSelect = selectedCrypto.firstIndex(of: coin)  {
                 selectedCrypto.remove(at: indexSelect)
                 updateCellView?(indexAll)
             }
-        }
-        if selectedCrypto.count < 3  {
+        } else if selectedCrypto.count < 3  {
             selectedCrypto.append(coin)
         } else {
             let last = selectedCrypto.removeLast()
