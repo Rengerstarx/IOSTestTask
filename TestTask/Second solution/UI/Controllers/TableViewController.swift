@@ -7,11 +7,13 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     private let data: TableDataProvider
     var completionHandler: ((City?) -> Void)?
     var completionHandlerCrypto: (([Crypto]) -> Void)?
-    let tag: WidgetType
+    private let tag: WidgetType
+    private let reuseIdentifireCoin = "CoinCell"
+    private let reuseIdentifireCity = "CityCell"
     
-    init(widgetType tag: WidgetType, _ city: City?, _ coins: [Crypto]) {
+    init(widgetType tag: WidgetType) {
         self.tag = tag
-        data = TableDataProvider(widgetType: tag, currentCity: city, currentCrypto: coins)
+        data = TableDataProvider(widgetType: tag)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -28,10 +30,9 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         data.updateTableView = { [weak self] in
             self?.tableView.reloadData()
         }
-        data.updateCellView = { [weak self] number in
-            if let indexArray = self?.tableView.indexPathsForVisibleRows {
-                self?.tableView.reloadRows(at: [indexArray[number]], with: .none)
-            }
+        data.updateCellView = { [weak self] index in
+            let path = IndexPath(row: index, section: 0)
+            self?.tableView.reloadRows(at: [path], with: .none)
         }
     }
     
@@ -41,13 +42,13 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tag != .crypto {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CityCell", for: indexPath) as? CityCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifireCity, for: indexPath) as? CityCell
             let city = data.getCityById(indexPath.item)
             cell?.codeLabel.text = city.code
             cell?.citynameLabel.text = city.name
             return cell ?? CityCell()
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CoinCell", for: indexPath) as? CoinCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifireCoin, for: indexPath) as? CoinCell
             let coin = data.getCryptoById(indexPath.item)
             cell?.imageC.sd_setImage(with: URL(string: coin.image))
             cell?.nameLabel.text = coin.name
@@ -75,8 +76,8 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     private func initUITableView() {
-        tableView.register(CityCell.self, forCellReuseIdentifier: "CityCell")
-        tableView.register(CoinCell.self, forCellReuseIdentifier: "CoinCell")
+        tableView.register(CityCell.self, forCellReuseIdentifier: reuseIdentifireCity)
+        tableView.register(CoinCell.self, forCellReuseIdentifier: reuseIdentifireCoin)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = UIColor.appGrey

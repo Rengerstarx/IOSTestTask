@@ -3,7 +3,7 @@ class MapDataProvider {
     weak var delegate: SetupDelegate?
     private var state: WidgetState = .nilError
     private var city: City?
-    private let def = Defaults()
+    private let defaults = Defaults()
     
     func initData() {
         takeCity()
@@ -11,7 +11,7 @@ class MapDataProvider {
     }
     
     private func takeCity() {
-        city = def.getCityMap()
+        city = defaults.getCityMap()
     }
     
     private func checkActive() {
@@ -23,9 +23,9 @@ class MapDataProvider {
         if self.city?.name != city?.name {
             self.city = city
             if let cityC = city {
-                def.setCityMap(cityC)
+                defaults.setCityMap(cityC)
             } else {
-                def.removeCityMap()
+                defaults.removeCityMap()
             }
             checkActive()
         }

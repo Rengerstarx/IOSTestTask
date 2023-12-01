@@ -3,8 +3,8 @@ import TinyConstraints
 
 class CoinCell: UITableViewCell {
     
-    let imageC = UIImageView()
-    let nameLabel = UILabel()
+    let image = UIImageView()
+    let name = UILabel()
     let switcher = UISwitch()
     var onSwitcherStateUpdate: ((Bool) -> Void)?
     
@@ -23,26 +23,26 @@ class CoinCell: UITableViewCell {
     }
     
     private func setupLayout() {
-        contentView.addSubview(imageC)
-        imageC.leftToSuperview(offset: 5)
-        imageC.topToSuperview(offset: 5)
-        imageC.bottomToSuperview(offset: -5)
-        contentView.addSubview(nameLabel)
-        nameLabel.topToSuperview(offset: 5)
-        nameLabel.bottomToSuperview(offset: -5)
+        contentView.addSubview(image)
+        image.leftToSuperview(offset: 5)
+        image.topToSuperview(offset: 5)
+        image.bottomToSuperview(offset: -5)
+        contentView.addSubview(name)
+        name.topToSuperview(offset: 5)
+        name.bottomToSuperview(offset: -5)
         contentView.addSubview(switcher)
         switcher.rightToSuperview(offset: -5)
         switcher.topToSuperview(offset: 5)
         switcher.bottomToSuperview(offset: -5)
-        nameLabel.leftToRight(of: imageC, offset: 10)
-        nameLabel.rightToLeft(of: switcher, offset: -10)
+        name.leftToRight(of: image, offset: 10)
+        name.rightToLeft(of: switcher, offset: -10)
     }
     
     private func setupView() {
-        imageC.aspectRatio(1)
-        imageC.contentMode = .scaleAspectFit
-        nameLabel.textColor = .black
-        nameLabel.font = UIFont.systemFont(ofSize: 18)
+        image.aspectRatio(1)
+        image.contentMode = .scaleAspectFit
+        name.textColor = .black
+        name.font = UIFont.systemFont(ofSize: 18)
     }
     
     required init?(coder: NSCoder) {

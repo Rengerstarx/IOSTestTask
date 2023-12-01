@@ -34,7 +34,7 @@ open class BaseWidgetView: UIView {
         tryButton.layer.cornerRadius = 10
         tryButton.setTitleColor(.white, for: .normal)
         tryButton.titleLabel?.font = UIFont.systemFont(ofSize: 22)
-        tryButton.setTitle("Repeat", for: .normal)
+        tryButton.setTitle("Повторить", for: .normal)
         tryButton.isHidden = true
         settingsButton.setImage(UIImage(named: "settings"), for: .normal)
         settingsButton.isHidden = true

@@ -4,7 +4,7 @@ class WeatherDataProvider {
     private var state: WidgetState = .connectError
     private var city: City?
     private var weather: Weather?
-    private let def = Defaults()
+    private let defaults = Defaults()
     
     func initData() {
         delegate?.setLoader(widgetType: .weather)
@@ -13,7 +13,7 @@ class WeatherDataProvider {
     }
     
     private func takeCity() {
-        city = def.getCityWeather()
+        city = defaults.getCityWeather()
     }
     
     private func checkActive() {
@@ -36,10 +36,10 @@ class WeatherDataProvider {
     func update(selectedCity city: City?) {
         if self.city?.name != city?.name {
             self.city = city
-            if let cityC = city {
-                def.setCityWeather(cityC)
+            if let cityNoNil = city {
+                defaults.setCityWeather(cityNoNil)
             } else {
-                def.removeCityWeather()
+                defaults.removeCityWeather()
             }
             checkActive()
         }

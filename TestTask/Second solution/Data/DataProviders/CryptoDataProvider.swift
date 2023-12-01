@@ -3,7 +3,7 @@ class CryptoDataProvider {
     weak var delegate: SetupDelegate?
     private var state: WidgetState = .nilError
     private var coins: [Crypto] = []
-    private let def = Defaults()
+    private let defaults = Defaults()
     
     func initData() {
         delegate?.setLoader(widgetType: .crypto)
@@ -12,7 +12,7 @@ class CryptoDataProvider {
     }
     
     private func takeCoins() {
-        coins = def.getCoins()
+        coins = defaults.getCoins()
     }
     
     private func checkActive() {
@@ -36,7 +36,7 @@ class CryptoDataProvider {
     func update(newCoins coins: [Crypto]) {
         if !(self.coins == coins) {
             self.coins = coins
-            def.setCoins(coins)
+            defaults.setCoins(coins)
             checkActive()
         }
     }

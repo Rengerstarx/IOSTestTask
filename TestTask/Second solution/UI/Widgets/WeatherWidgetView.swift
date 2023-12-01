@@ -6,8 +6,6 @@ import SDWebImage
 class WeatherWidgetView: BaseWidgetView {
     private let additionalView = UIView()
     private let stackWeather = UIStackView()
-    private var wthTypeIm = ""
-    private var wthTypeString = ""
     private let imgWeather = UIImageView()
     private let cityLabel = UILabel()
     private let typeWeatherLabel = UILabel()

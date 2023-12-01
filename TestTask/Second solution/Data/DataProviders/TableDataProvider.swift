@@ -8,16 +8,19 @@ class TableDataProvider {
     private var selectedCrypto = [Crypto]()
     private var arrayCrypto = [Crypto]()
     private var arrayCity = [City]()
-    private let def = Defaults()
-    private var countOfCoins = 0
+    private let defaults = Defaults()
     
-    init(widgetType tag: WidgetType, currentCity city: City?, currentCrypto crypto: [Crypto]) {
-        selectedCity = city
-        selectedCrypto = crypto
-        if tag == .crypto {
-            downloadCrypto()
-        } else {
+    init(widgetType tag: WidgetType) {
+        switch tag {
+        case .map:
+            selectedCity = defaults.getCityMap()
             downloadCities()
+        case .weather:
+            selectedCity = defaults.getCityWeather()
+            downloadCities()
+        case .crypto:
+            selectedCrypto = defaults.getCoins()
+            downloadCrypto()
         }
     }
     
@@ -61,8 +64,8 @@ class TableDataProvider {
         return selectedCrypto.contains(coin)
     }
     
-    func didUpdatedStateForCoin(_ coin: Crypto, isSelected selec: Bool) {
-        if selectedCrypto.contains(coin) {
+    func didUpdatedStateForCoin(_ coin: Crypto, isSelected isOn: Bool) {
+        if isOn {
             if let indexAll = arrayCrypto.firstIndex(of: coin), let indexSelect = selectedCrypto.firstIndex(of: coin)  {
                 selectedCrypto.remove(at: indexSelect)
                 updateCellView?(indexAll)
@@ -77,6 +80,5 @@ class TableDataProvider {
                 updateCellView?(indexSelect)
             }
         }
-        
     }
 }
